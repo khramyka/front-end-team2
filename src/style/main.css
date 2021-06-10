@@ -1,0 +1,33 @@
+@import './pageStale/login.css';
+@import './reset.css'
+
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    font-weight: 400, 500, 600, 700;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none !important;
+}
+
+#root{
+    font-family: "Poppins";
+}
+
+button{
+    border: none;
+}
+
+button,
+button:active,
+button:focus {
+    outline: none;
+}
+
