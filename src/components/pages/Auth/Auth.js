@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormLogin,  Logo } from '../../components/index';
+import { FormLogin,  Logo } from '../../index';
 import style from "./Auth.module.scss";
 
 const Auth = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Graph, GraphPanel } from '../../index';
+import { Graph, GraphPanel } from '../../../index';
 import style from "./GraphInfo.module.scss";
 
 const GraphInfo = () => {

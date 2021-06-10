@@ -7,7 +7,7 @@ import {
     Footer,
     Header,
     SearchBar,
-} from "../../components/index";
+} from "../../index";
 import style from "./MainPage.module.scss";
 
 const MainPage = () => {

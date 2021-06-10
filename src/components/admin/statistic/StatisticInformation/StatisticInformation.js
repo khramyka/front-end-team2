@@ -1,5 +1,5 @@
 import React from 'react';
-import {AdditionalDate, GraphInfo, InformationBlock, StatisticFilter,} from "../../index";
+import {AdditionalDate, GraphInfo, InformationBlock, StatisticFilter,} from "../../../index";
 import style from "./StatisticInformation.module.scss";
 
 const StatisticInformation = () => {

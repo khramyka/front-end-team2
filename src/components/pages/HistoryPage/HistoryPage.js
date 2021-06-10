@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardList, Footer, Header, SearchBar } from "../../components/index";
+import { CardList, Footer, Header, SearchBar } from "../../index";
 import style from "./HistoryPage.module.scss";
 
 const HistoryPage = () => {

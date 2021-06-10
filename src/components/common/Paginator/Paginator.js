@@ -1,7 +1,7 @@
 import React from 'react';
-import style from "./Plaginator.module.scss";
+import style from "./Paginator.module.scss";
 
-const Plaginator = () => {
+const Paginator = () => {
     return (
         <div>
             Plaginator
@@ -9,4 +9,4 @@ const Plaginator = () => {
     );
 };
 
-export default Plaginator;
+export default Paginator;
