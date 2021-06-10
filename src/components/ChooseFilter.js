@@ -4,7 +4,8 @@ import { Filter } from './index';
 const ChooseFilter = () => {
     return (
         <div>
-            <Filter/>
+            ChooseFilter
+            <Filter />
         </div>
     );
 };
