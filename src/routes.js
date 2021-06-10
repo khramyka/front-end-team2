@@ -1,4 +1,4 @@
-import { Auth, HistoryPage, MainPage, StatisticPage } from "./pages";
+import { Auth, HistoryPage, MainPage, StatisticPage } from "./pages/index";
 import { HISTORY_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, STATISTIC_ROUTE } from "./utils/consts";
 
 

@@ -1,5 +1,5 @@
-@import './pageStale/login.css';
-@import './reset.css'
+
+@import './reset.css';
 
 * {
     box-sizing: border-box;
@@ -11,11 +11,6 @@
     font-weight: 400, 500, 600, 700;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-    outline: none !important;
-}
 
 #root{
     font-family: "Poppins";
@@ -23,6 +18,7 @@ select:focus {
 
 button{
     border: none;
+    cursor: pointer;
 }
 
 button,
