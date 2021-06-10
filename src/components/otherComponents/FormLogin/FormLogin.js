@@ -3,17 +3,21 @@ import style from "./FormLogin.module.scss";
 
 const FormLogin = () => {
     return (
-        <form className="form-login">
+        <form className={style.FormLogin}>
             <input
                 type="email"
                 placeholder="email"
-                className="incorrect__input"
+                className={style.incorrectInput}
             />
             <p>
-                The email or password you entered isn’t connected to any account.
-                Find your account and log in.
+                The email or password you entered isn’t connected to any
+                account. Find your account and log in.
             </p>
-            <input type="text" placeholder="password" className="form__input-password"/>
+            <input
+                type="text"
+                placeholder="password"
+                className={style.formInputPassword}
+            />
             <button type="submit"> Log in </button>
         </form>
     );

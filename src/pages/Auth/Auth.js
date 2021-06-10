@@ -4,9 +4,11 @@ import style from "./Auth.module.scss";
 
 const Auth = () => {
     return (
-        <div className={style.logitContainer}>
-            <Logo />
-            <FormLogin />
+        <div className={style.LogitContainer}>
+            <div className={style.container}>
+                <Logo />
+                <FormLogin />
+            </div>
         </div>
     );
 };

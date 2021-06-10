@@ -1,0 +1,51 @@
+.Logo {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+
+    .logo__logo {
+        font-size: 40px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+    }
+
+    .logo__name {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .logo__motto {
+        font-size: 12px;
+    }
+}
+
+ @media screen and (min-width:600px) {
+     .Logo{
+         margin-top: 0px;
+
+         .logo__logo {
+             font-size: 60px;
+             letter-spacing: 8px;
+         }
+
+         .logo__name {
+             font-size: 20px;
+         }
+
+         .logo__motto {
+             font-size: 16px;
+         }
+     }
+ }
+
+  @media screen and (min-width:800px) {
+      .Logo {
+          margin: 0px;
+          justify-content: center;
+      }
+  }

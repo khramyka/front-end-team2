@@ -3,10 +3,12 @@ import style from "./Logo.module.scss";
 
 const Logo = () => {
     return (
-        <div className="logo logo--mobile">
-            <span className="logo__logo">logo</span>
-            <span className="logo__name">name company</span>
-            <span className="logo__motto">Collected everything for you</span>
+        <div className={style.Logo}>
+            <span className={style.logo__logo}>logo</span>
+            <span className={style.logo__name}>name company</span>
+            <span className={style.logo__motto}>
+                Collected everything for you
+            </span>
         </div>
     );
 };
