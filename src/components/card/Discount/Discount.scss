@@ -1,0 +1,35 @@
+.discount{
+  width: 230px;
+  //padding: 20px 20px 10px 37px;
+  padding-left: 37px;
+  padding-right: 20px;
+
+  &__title {
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  &__info{
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  &__size{
+    font-size: 36px;
+    font-weight: 700;
+  }
+  &__date{
+    font-size: 14px;
+    color: #bababa;
+    margin-bottom: 15px;
+  }
+  &__place{
+    font-size: 12px;
+    color: #000;
+    display: flex;
+    align-items: center;
+    &:before{
+      content: url("../../../images/icons/place.svg");
+      margin-right: 6px;
+    }
+  }
+}

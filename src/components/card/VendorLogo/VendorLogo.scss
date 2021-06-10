@@ -1,0 +1,12 @@
+.vendor-logo{
+  width: 100px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 2px dashed #bababa;
+
+  &__img{
+    max-width: 90px;
+  }
+}

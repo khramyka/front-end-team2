@@ -1,10 +1,15 @@
 import React from 'react';
-import style from "./Like.module.scss";
+import './Like.scss'
 
 const Like = () => {
     return (
-        <div>
-           Like 
+        <div className="card-buttons">
+           <button className="card-buttons__item">
+               <img src="image/icons/Like.svg" alt=""/>
+           </button>
+           <button className="card-buttons__item">
+               <img src="image/icons/Share.svg" alt=""/>
+           </button>
         </div>
     );
 };

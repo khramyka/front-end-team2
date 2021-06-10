@@ -1,10 +1,10 @@
 import React from 'react';
-import style from "./VendorLogo.module.scss";
+import './VendorLogo.scss'
 
 const VendorLogo = () => {
     return (
-        <div>
-           VendorLogo 
+        <div className="vendor-logo">
+            <img className="vendor-logo__img" src="image/Logo.jpg" alt="vendor-logo"/>
         </div>
     );
 };

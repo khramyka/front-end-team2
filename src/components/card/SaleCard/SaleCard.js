@@ -1,13 +1,12 @@
 import React from 'react';
 import { DateValid, Discount, Like, VendorLogo } from '../../index';
-import style from "./SaleCard.module.scss";
+import './SaleCard.scss'
 
 const SaleCard = () => {
     return (
-        <div>
+        <div className="sale-card">
            <VendorLogo/>
            <Discount/>
-           <DateValid/>
            <Like/>
         </div>
     );
