@@ -1,11 +1,11 @@
 import React from 'react';
 import { FormLogin,  Logo } from '../../index';
-import style from "./Auth.module.scss";
+import  "./Auth.scss";
 
 const Auth = () => {
     return (
-        <div className={style.LogitContainer}>
-            <div className={style.container}>
+        <div className="LogitContainer">
+            <div className="container">
                 <Logo />
                 <FormLogin />
             </div>

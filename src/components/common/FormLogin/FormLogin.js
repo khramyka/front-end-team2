@@ -1,13 +1,18 @@
-import React from 'react';
-import style from "./FormLogin.module.scss";
+import React, { useState } from "react";
+import "./FormLogin.scss";
 
 const FormLogin = () => {
+    const [date, setDate] = useState({email: null, password: null})
+    const handleclick = () => {
+        console.log(date);
+    }
     return (
-        <form className={style.FormLogin}>
+        <form className="FormLogin">
             <input
                 type="email"
                 placeholder="email"
-                className={style.incorrectInput}
+                className="incorrectInput"
+                onChange = {(e) => setDate({...date,email: e.target.value})}
             />
             <p>
                 The email or password you entered isn’t connected to any
@@ -16,9 +21,10 @@ const FormLogin = () => {
             <input
                 type="text"
                 placeholder="password"
-                className={style.formInputPassword}
+                className="formInputPassword"
+                onChange = {(e) => setDate({...date,password: e.target.value})}
             />
-            <button type="submit"> Log in </button>
+            <button type="submit" onClick={() => handleclick()}> Log in </button>
         </form>
     );
 };
