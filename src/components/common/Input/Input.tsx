@@ -1,10 +1,12 @@
 import React from 'react';
 import "./Input.scss";
 
-const Input = () => {
+const Input = ( props: { title: string; } ) => {
     return (
-        <div>
-            Input
+        <div className="input">
+            <label>
+                <input type="text" name="name" placeholder={props.title}/>
+            </label>
         </div>
     );
 };

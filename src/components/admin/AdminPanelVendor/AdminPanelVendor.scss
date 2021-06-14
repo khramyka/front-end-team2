@@ -1,0 +1,22 @@
+.panelVendor {
+  width: 100%;
+  padding: 20px;
+  padding-bottom: 30px;
+
+  background: #f7f9fb;
+}
+
+.panelVendorTextarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 9px;
+
+  border: 1px solid #000;
+  background: #f7f9fb;
+
+  &::placeholder {
+    font-size: 12px;
+    color: B0B0B0;
+    font-family: "Montserrat";
+  }
+}
