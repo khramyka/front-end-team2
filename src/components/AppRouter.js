@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import { routes } from '../routes';
 
 const AppRouter = () => {
-    routes.forEach(i=> console.log(i.Component))
     return (
         <Switch>
             {routes.map(({ path, Component }) => 

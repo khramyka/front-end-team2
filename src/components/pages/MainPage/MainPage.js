@@ -14,9 +14,9 @@ const MainPage = () => {
     const admin = false;
     return (
         <div>
-            <Header />
+            <Header /> 
             <SearchBar />
-            {admin && (
+             {admin && (
                 <div>
                     <AdminPanelCard />
                     <AdminPanelVendor />
@@ -25,7 +25,7 @@ const MainPage = () => {
             )}
 
             <CardList />
-            <Footer />
+            <Footer /> 
         </div>
     );
 };

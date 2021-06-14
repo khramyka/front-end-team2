@@ -24,7 +24,6 @@
     .LogitContainer {
         justify-content: center;
         align-items: center;
-
         .container {
             flex-direction: column;
 
@@ -40,7 +39,7 @@
         align-items:center;
         .container {
             flex-direction: row;
-
+            justify-content:center;
         }
     }
     
