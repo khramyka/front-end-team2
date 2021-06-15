@@ -1,0 +1,22 @@
+.containerData {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px #c5d0d6;
+    border-top: solid 1px #c5d0d6;
+    max-width: 420px;
+    width: 100%;
+
+    .containerData__span {
+        font-size: 18px;
+        font-weight: 600;
+        margin-right: 30px;
+    }
+
+    .containerData__picker {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+;
