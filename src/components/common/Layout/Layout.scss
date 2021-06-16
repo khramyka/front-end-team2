@@ -3,6 +3,7 @@
 }
 
 .filterBar {
+  padding-top: 10px;
   padding-right: 60px;
 
   @media (max-width: 970px) {
@@ -10,14 +11,24 @@
     min-width: 300px;
     max-width: 320px;
   }
+
 }
+
+.filterBar .container {@media (max-width: 340px) {
+
+  padding: 20px 0;
+}
+}
+
+
+
 
 .filterButton {
   display: none;
   @media (max-width: 970px) {
     display: block;
     position: absolute;
-    top: -30px;
+    top: -10px;
   }
 }
 
