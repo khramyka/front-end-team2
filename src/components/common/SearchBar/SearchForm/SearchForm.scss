@@ -13,17 +13,17 @@
             padding-left: 5px;
         }
 
-        button {
+        input[type="submit"] {
             width: 32px;
             height: 32px;
             font-size: 0;
             background-color: #0082CA;
             border: none;
+            background-image: url("../../../../images/icons/btn-cearching.svg");
             background-repeat: no-repeat;
             background-size: 70%;
             background-position: center;
             padding: 0;
-            color: white;
         }
 
         input[type="submit"]:hover {

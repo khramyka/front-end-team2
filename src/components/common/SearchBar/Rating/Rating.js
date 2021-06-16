@@ -31,7 +31,9 @@ const Rating = () => {
     return (
         <div className="rating" onClick={(e) => installStarBorder(e)}>
             <span>Rating</span>
+
             <RatingStar starArr={starArr} />
+
         </div>
     );
 };

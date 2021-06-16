@@ -5,7 +5,7 @@ const DateValid = () => {
     return (
         <div>
             DateValid
-DataValid
+
         </div>
     );
 };

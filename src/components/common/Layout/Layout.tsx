@@ -48,7 +48,7 @@ export default function FullWidthGrid() {
     return (
         <div   className={classes.root}>
             {/*Header component*/}
-            <Header />
+           {/* <Header/>*/}
             {/*Header component*/}
 
             {/*main content in page*/}
