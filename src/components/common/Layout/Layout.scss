@@ -5,7 +5,7 @@
 .filterBar {
   padding-right: 60px;
 
-  @media (max-width: 794px) {
+  @media (max-width: 970px) {
     display: none;
     min-width: 300px;
     max-width: 320px;
@@ -14,7 +14,7 @@
 
 .filterButton {
   display: none;
-  @media (max-width: 794px) {
+  @media (max-width: 970px) {
     display: block;
     position: absolute;
     top: -30px;

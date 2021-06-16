@@ -17,13 +17,6 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
 
-    /* breakpoints: {
-         values: {
-             mobile: 800,
-             tablet: 900,
-             desktop: 1280,
-         }},*/
-
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
@@ -35,20 +28,18 @@ export default function FullWidthGrid() {
     const classes = useStyles();
 
     const handleClick = () => {
-
         const myElement: HTMLElement | null = document.querySelector('.ExtendedCard');
         if (myElement === null) {
-            console.log('Fuck')
+            console.log('no element')
         } else {
                 myElement.style.display = 'block';
-            }
-
+                }
     };
 
     const filterClick = () => {
         const myElement: HTMLElement | null = document.querySelector('.filterBar');
         if (myElement === null) {
-            console.log('Fuck')
+            console.log('no element')
         } else {
             myElement.classList.toggle("open");
         }
@@ -56,33 +47,35 @@ export default function FullWidthGrid() {
 
     return (
         <div   className={classes.root}>
+            {/*Header component*/}
             <Header />
+            {/*Header component*/}
 
-
+            {/*main content in page*/}
             <div className="mainContent" style={{position: 'relative'}}>
                 <div className="filterButton" onClick={filterClick}>
-                    <FilterListIcon
-                        fontSize="large"/>
+                    <FilterListIcon fontSize="large"/>
                 </div>
 
-              <div className="filterBar">
-                <SearchBar/>
-              </div>
+                <div className="filterBar">
+                    <SearchBar/>
+                </div>
+
               <div className="cards">
                   <ExtendedCard />
                   <Grid
-
                       container
                       spacing={3}
                       justify="center"
                   >
-                      {/* <ExtendedCard/>*/}
-                      {[0, 1, 2, 3, 4, 5].map((value) => (
-                          <Grid key={value} item
-                          onClick={handleClick}>
-                              <SaleCard
 
-                              />
+                      {[0, 1, 2, 3, 4, 5].map((value) => (
+                          <Grid
+                              key={value}
+                              item
+                              onClick={handleClick}
+                          >
+                              <SaleCard />
                           </Grid>
                       ))}
                   </Grid>
@@ -90,11 +83,11 @@ export default function FullWidthGrid() {
 
 
             </div>
+            {/*main content in page*/}
 
-
-
+            {/*Footer component*/}
             <Footer/>
-
+            {/*Footer component*/}
         </div>
     );
 }
