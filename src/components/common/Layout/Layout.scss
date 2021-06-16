@@ -1,0 +1,32 @@
+.mainContent {
+  display: flex;
+}
+
+.filterBar {
+  padding-right: 60px;
+
+  @media (max-width: 794px) {
+    display: none;
+    min-width: 300px;
+    max-width: 320px;
+  }
+}
+
+.filterButton {
+  display: none;
+  @media (max-width: 794px) {
+    display: block;
+    position: absolute;
+    top: -30px;
+  }
+}
+
+.cards {
+  padding-top: 20px;
+  @media (max-width: 426px) {
+    margin-left: -10px;
+  }
+}
+.container {padding: 5px;}
+
+.open {display: block}
