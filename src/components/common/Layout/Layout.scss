@@ -1,0 +1,45 @@
+.mainContent {
+  display: flex;
+}
+
+.filterBar {
+  padding-top: 10px;
+  margin-right: 40px;
+  min-width: 320px;
+
+  @media (max-width: 970px) {
+    display: none;
+    min-width: 300px;
+    max-width: 320px;
+  }
+
+}
+
+.filterBar .container {@media (max-width: 340px) {
+
+  padding: 20px 0;
+}
+}
+
+
+
+
+.filterButton {
+  display: none;
+  @media (max-width: 970px) {
+    display: block;
+    position: absolute;
+    top: -10px;
+  }
+}
+
+.cards {
+  padding-top: 20px;
+  padding-right: 20px;
+  @media (max-width: 426px) {
+    margin-left: -10px;
+  }
+}
+.container {padding: 5px;}
+
+.open {display: block}
