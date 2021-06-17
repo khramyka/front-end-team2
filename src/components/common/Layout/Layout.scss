@@ -7,7 +7,7 @@
   margin-right: 40px;
   min-width: 320px;
 
-  @media (max-width: 970px) {
+  @media (max-width: 762px) {
     display: none;
     min-width: 300px;
     max-width: 320px;
@@ -26,7 +26,7 @@
 
 .filterButton {
   display: none;
-  @media (max-width: 970px) {
+  @media (max-width: 762px) {
     display: block;
     position: absolute;
     top: -10px;
@@ -34,7 +34,7 @@
 }
 
 .cards {
-  padding-top: 20px;
+  padding-top: 30px;
   padding-right: 20px;
   @media (max-width: 426px) {
     margin-left: -10px;
