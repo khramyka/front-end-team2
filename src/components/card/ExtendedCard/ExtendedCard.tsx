@@ -2,7 +2,7 @@ import React from "react";
 import "./ExtendedCard.scss";
 import PhoneIcon from "@material-ui/icons/Phone";
 import Button from "@material-ui/core/Button";
-import Rating from "../../common/SearchBar/Rating/Rating";
+/*import Rating from "../../common/SearchBar/Rating/Rating";*/
 import CloseIcon from "@material-ui/icons/Close";
 
 const ExtendedCard: React.FC = () => {
@@ -45,9 +45,9 @@ const ExtendedCard: React.FC = () => {
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             </span>
                     </div>
-                    <div className="ExtendedCard__Rating">
+               {/*     <div className="ExtendedCard__Rating">
                         <Rating />
-                    </div>
+                    </div>*/}
                     <div className="contacts">
                         <PhoneIcon color="primary" />
                         <span className="number">095 567 8778</span>
@@ -57,7 +57,7 @@ const ExtendedCard: React.FC = () => {
                         <Button variant="contained" color="primary">
                             Use Coupon
                         </Button>
-                        <span className="couponsLeft">5 coupons left</span>
+                       {/* <span className="couponsLeft">5 coupons left</span>*/}
                     </div>
                 </div>
             </div>
