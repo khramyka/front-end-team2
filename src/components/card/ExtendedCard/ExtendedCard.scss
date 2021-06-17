@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+.ExtendedCard {
+  font-family: 'Poppins', sans-serif;;
+  position:relative;
+  margin: 0 auto;
+  max-width: 900px;
+  /* border: 1px solid black;*/
+  box-sizing: border-box;
+  -webkit-box-shadow: 1px 1px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 1px 1px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 1px 1px 8px 0px rgba(34, 60, 80, 0.2);
+  padding: 40px;
+  margin-bottom: 30px;
+  display: none;
+
+  @media (max-width: 680px) {
+    /*padding: 10px;*/
+  }
+
+  @media (max-width: 330px) {
+    padding: 0;
+    h3, span, p {
+      padding:5px;
+    }
+  }
+
+  .MuiButton-outlined {
+    background-color: white;
+  }
+
+  .MuiButton-outlinedSecondary {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    @media (max-width: 548px) {
+      top:10%;
+      left:50%;
+      transform:translate(-50%, -50%);
+
+    }
+  }
+
+  &__Header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    /*flex-direction: row;*/
+    border-bottom: 1px solid grey;
+
+  }
+
+  &__Image {
+    max-width: 300px;
+    border-radius: 5px;
+
+  }
+
+  &__Logo {
+    display: flex;
+    flex: 30%;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 620px) {
+      flex: 100%;
+    }
+
+  }
+
+  &__Info {
+    display: flex;
+    flex-direction: column;
+    flex: 30%;
+    padding-left: 10px;
+    padding-top:10px;
+    @media (max-width: 620px) {
+      flex: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .brandName {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .discount {
+      color: red;
+      font-size: 1.5rem;
+      padding-left: 15px;
+    }
+  }
+  &__Rating {
+    padding-top: 10px;
+
+
+  }
+
+  .rating {
+    border-bottom: none;
+    padding-bottom: 0;
+    padding-top: 10px;
+    @media (max-width: 620px) {
+      justify-content: center;
+    }
+  }
+  .rating span {
+    display: none;
+
+  }
+
+  .MuiSvgIcon-colorPrimary {
+    color: #1877F2;
+    margin-bottom: -4px;}
+
+  .MuiButton-containedPrimary {
+    background-color: #1877F2;
+  }
+
+  .number {
+
+    padding-top: 6px;
+    padding-left: 10px;
+  }
+
+  &__actions {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .couponsLeft {
+    padding-left: 20px;
+    text-decoration: underline;
+  }
+  &__Description {
+    border-bottom: 1px solid grey;
+    h3 {
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-weight: 400;
+      font-size: 2rem;
+      color: #1877F2;
+    }
+    span {
+      color: #1877F2;
+      font-size: 1rem;
+      @media (max-width: 380px) {
+        display: block;
+      }
+    }
+    .validDate {
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding-left: 10px;
+    }
+  }
+
+  &__Location {
+    border-bottom: 1px solid grey;
+    h3 {
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-weight: 400;
+      font-size: 2rem;
+      color: #1877F2;
+    }
+    .map-responsive{
+      overflow:hidden;
+      padding-bottom:350px;
+      position:relative;
+      height:0;
+    }
+    .map-responsive iframe{
+      left:0;
+      top:0;
+      height:320px;
+      width:100%;
+      position:absolute;
+      border: none;
+    }
+  }
+
+  &__Footer {
+    h3 {
+      margin-bottom: 0;
+      margin-top: 10px;
+      font-weight: 400;
+      font-size: 2rem;
+      color: #1877F2;
+    }
+  }
+
+  .shortDescription {
+    @media (max-width: 620px) {
+
+      text-align: center;
+    }
+  }
+}
+
+
+
+.close {
+  display: none;
+}
+
+
+
