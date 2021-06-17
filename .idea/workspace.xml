@@ -1,75 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce45564f-ff98-4133-9589-3116d3b58a94" name="Default Changelist" comment="added fonts">
-      <change afterPath="$PROJECT_DIR$/src/components/AppRouter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/AdminPanelCard/AdminPanelCard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/AdminPanelCard/AdminPanelCard.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/AdminPanelVendor/AdminPanelVendor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/AdminPanelVendor/AdminPanelVendor.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/DelateVendorMenu/DelateVendorMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/DelateVendorMenu/DelateVendorMenu.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/AdditionalDate/AdditionalDate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/AdditionalDate/AdditionalDate.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/Graph/Graph.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/Graph/Graph.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/GraphInfo/GraphInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/GraphInfo/GraphInfo.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/GraphPanel/GraphPanel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/GraphPanel/GraphPanel.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/InfoItem/InfoItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/InfoItem/InfoItem.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/InformationBlock/InformationBlock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/InformationBlock/InformationBlock.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/StatisticFilter/StatisticFilter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/StatisticFilter/StatisticFilter.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/StatisticInformation/StatisticInformation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/admin/statistic/StatisticInformation/StatisticInformation.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Filter/Filter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Filter/Filter.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/FormLogin/FormLogin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Input/Input.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Input/Input.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Logo/Logo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Paginator/Paginator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Paginator/Paginator.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Paragraph/Paragraph.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Paragraph/Paragraph.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Preloader/Preloader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Preloader/Preloader.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/ResponsiveDrawer/ResponsiveDrawer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/SearchBar/RatingStar/RatingStar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/SearchBar/RatingStar/RatingStar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Submitbutton/Submitbutton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/common/Submitbutton/Submitbutton.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/Auth/Auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/HistoryPage/HistoryPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/HistoryPage/HistoryPage.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/MainPage/MainPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/MainPage/MainPage.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/StatisticPage/StatisticPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/StatisticPage/StatisticPage.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/pages/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/icons/btn-cearching.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/icons/btn-close.svg" afterDir="false" />
+    <list default="true" id="ce45564f-ff98-4133-9589-3116d3b58a94" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/card/DateValid/DateValid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card/DateValid/DateValid.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/card/ExtendedCard/ExtendedCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card/ExtendedCard/ExtendedCard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/card/ExtendedCard/ExtendedCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card/ExtendedCard/ExtendedCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/Layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/Layout/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/ResponsiveDrawer/ResponsiveDrawer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/ResponsiveDrawer/ResponsiveDrawer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/SearchBar/Rating/Rating.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/SearchBar/Rating/Rating.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/SearchBar/SearchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/SearchBar/SearchBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/SearchBar/SearchBar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/SearchBar/SearchBar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/SearchBar/SearchForm/SearchForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/SearchBar/SearchForm/SearchForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/SearchBar/SearchForm/SearchForm.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/SearchBar/SearchForm/SearchForm.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/Auth/Auth.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/Auth/Auth.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,6 +30,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\ValdemariuM\WebstormProjects\front-end-team2\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Users\ValdemariuM\WebstormProjects\front-end-team2\node_modules\typescript\lib" />
   </component>
@@ -130,8 +65,17 @@
       <workItem from="1623744358687" duration="5054000" />
       <workItem from="1623855782855" duration="24675000" />
       <workItem from="1623883327359" duration="131000" />
-      <workItem from="1623883513671" duration="4208000" />
+      <workItem from="1623883513671" duration="7236000" />
+      <workItem from="1623912436210" duration="73000" />
     </task>
+    <task id="LOCAL-00001" summary="added fonts">
+      <created>1623887854700</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1623887854704</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
