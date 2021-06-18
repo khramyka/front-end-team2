@@ -47,7 +47,7 @@
 
   &__Header {
     width: 100%;
-    padding-bottom: 20px;
+
     display: flex;
     flex-wrap: wrap;
 
@@ -86,7 +86,31 @@
     }
 
     .brandTitle {
+      padding-bottom: 10px;
+      margin-top: 40px;
+    }
+
+    .valid {
       padding-bottom: 20px;
+      &__INfo {
+        color: #1877F2;
+        font-size: 1rem;
+        @media (max-width: 380px) {
+          display: block;
+        }
+      }
+      &__Date {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding-left: 10px;
+      }
+    }
+
+
+
+    .shortDescription span {
+      line-height: 1.4rem;
     }
 
      .brandName {
@@ -137,14 +161,14 @@
 
   &__actions {
     padding-top: 10px;
-    padding-bottom: 20px;
+
 
     .submit {
       height: 40px;
       background: linear-gradient(to right, #1877F2, #1815BE);
       color: white;
       font-size: 15px;
-      transition: background 0.3s linea;
+      transition: background 0.3s linear;
       margin: 30px 0;
     }
 
@@ -172,18 +196,7 @@
       font-size: 2rem;
       color: #1877F2;
     }
-    span {
-      color: #1877F2;
-      font-size: 1rem;
-      @media (max-width: 380px) {
-        display: block;
-      }
-    }
-    .validDate {
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding-left: 10px;
-    }
+
   }
 
   &__Location {

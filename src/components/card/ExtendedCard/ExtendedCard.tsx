@@ -40,6 +40,12 @@ const ExtendedCard: React.FC = () => {
                         <h3 className="brandName">
                             Mi-mi store <span className="discount">-50%</span>
                         </h3>
+
+                    </div>
+                    <div className="valid">
+                        <span className="valid__INfo">
+            valid until<strong className="valid__Date">05 May 2021</strong>
+          </span>{" "}
                     </div>
 
 
@@ -51,10 +57,10 @@ const ExtendedCard: React.FC = () => {
                {/*     <div className="ExtendedCard__Rating">
                         <Rating />
                     </div>*/}
-                    <div className="contacts">
+                    {/*<div className="contacts">
                         <PhoneIcon color="primary" />
                         <span className="number">095 567 8778</span>
-                    </div>
+                    </div>*/}
 
                     <div className="ExtendedCard__actions">
                         <button type="submit" className="submit btn--extCard">
@@ -71,9 +77,7 @@ const ExtendedCard: React.FC = () => {
             <div className="ExtendedCard__Description">
                 <h3>
                     Description{" "}
-                    <span className="">
-            valid until<strong className="validDate">05 May 2021</strong>
-          </span>{" "}
+
                 </h3>
 
                 <div>
