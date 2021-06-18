@@ -81,7 +81,7 @@
 
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 1025px) {
       flex: 100%;
       justify-content: center;
       align-items: center;
@@ -111,8 +111,10 @@
 
 
 
-    .shortDescription span {
+    .shortDescription p {
       line-height: 1.4rem;
+      text-align: justify;
+      max-width: 300px;
     }
 
      .brandName {

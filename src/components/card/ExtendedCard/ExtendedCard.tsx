@@ -50,9 +50,9 @@ const ExtendedCard: React.FC = () => {
 
 
                     <div className="shortDescription">
-            <span>
+            <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </span>
+            </p>
                     </div>
                {/*     <div className="ExtendedCard__Rating">
                         <Rating />
