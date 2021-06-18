@@ -84,7 +84,9 @@ const ExtendedCard: React.FC = () => {
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
                         alias et facilis quia repudiandae sequi? Doloribus id quae rerum
-                        tenetur?
+                        tenetur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
+                        alias et facilis quia repudiandae sequi? Doloribus id quae rerum
+                        tenetur.
                     </p>
                 </div>
             </div>
