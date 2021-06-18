@@ -19,9 +19,7 @@
   font-family: "Poppins";
   font-family: Montserrat;
 }
-body{
 
-}
 button {
   border: none;
   cursor: pointer;
@@ -35,5 +33,8 @@ button:focus {
 .app-wrapper-container{
   margin: 0 auto;
   max-width: 1260px;
-  background-color: #DCDCDC;
+}
+
+body {
+  background: #F1F5F8;
 }

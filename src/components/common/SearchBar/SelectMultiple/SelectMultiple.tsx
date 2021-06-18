@@ -9,28 +9,28 @@ import {
     ListItemText,
 } from "@material-ui/core";
 
-const ITEM_HEIGHT = 48;
+const SelectMultiple = (props: { clName: string, data: any, name: string, width: number}) => {
+      const [personName, setPersonName] = useState<string[]>([]);
+
+      const handleChange = (event: any) => {
+          setPersonName(event.target.value);
+      };
+
+      const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
     PaperProps: {
         style: {
             maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
+            width: props.width
         },
     },
 };
 
-const SelectMultiple = ({ clName, data, name}) => {
-      const [personName, setPersonName] = useState([]);
-
-      const handleChange = (event) => {
-          setPersonName(event.target.value);
-      };
-
     return (
-        <FormControl className={clName}>
+        <FormControl className={props.clName}>
             <InputLabel id="demo-mutiple-checkbox-label">
-                {name} {data.length}
+                {props.name}
             </InputLabel>
             <Select
                 labelId="demo-mutiple-checkbox-label"
@@ -39,10 +39,10 @@ const SelectMultiple = ({ clName, data, name}) => {
                 value={personName}
                 onChange={handleChange}
                 input={<Input />}
-                renderValue={(selected) => selected.join(", ")}
+                renderValue={(selected: any) => selected.join(", ")}
                 MenuProps={MenuProps}
             >
-                {data.map((name) => (
+                {props.data.map((name: string) => (
                     <MenuItem key={name} value={name}>
                         <Checkbox
                             checked={personName.indexOf(name) > -1}

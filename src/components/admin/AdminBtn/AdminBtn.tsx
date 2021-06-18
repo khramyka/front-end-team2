@@ -1,10 +1,12 @@
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import {Box, createMuiTheme, Hidden, IconButton, makeStyles} from "@material-ui/core";
+import {Hidden, IconButton, makeStyles} from "@material-ui/core";
 import React from "react";
 import { Menu } from '@material-ui/core';
 import { MenuItem } from '@material-ui/core';
 import "./AdminBtn.scss"
 import AdminPanelCard from "../AdminPanelCard/AdminPanelCard";
+import DelateVendorMenu from '../DelateVendorMenu/DelateVendorMenu';
+import AdminPanelVendor from '../AdminPanelVendor/AdminPanelVendor';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#fff',
         "&:nth-child(1)": {
             marginTop: "0"
+        },
+        '&:hover': {
+            background: '#F1F5F8',
         }
     },
     menu: {
@@ -28,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "40px"
     },
     backgroundMenu: {
-        background: "#DCDCDC"
+        background: '#F1F5F8'
     }
 }));
 
@@ -83,9 +88,9 @@ export default function AdminBtn(){
                 }}
             >
                     <div className={classes.backgroundMenu}>
-                <MenuItem className={classes.item}>vendors</MenuItem>
-                <MenuItem className={classes.item}>add a promotion</MenuItem>
                 <MenuItem className={classes.item}><AdminPanelCard /></MenuItem>
+                <MenuItem className={classes.item}><AdminPanelVendor /></MenuItem>
+                <MenuItem className={classes.item}><DelateVendorMenu /></MenuItem>
                     </div>
             </Menu>
 

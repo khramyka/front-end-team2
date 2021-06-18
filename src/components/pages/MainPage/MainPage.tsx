@@ -30,13 +30,10 @@ const MainPage = () => {
             <SearchBar />
              {admin && (
                 <div>
-
-                    <AdminPanelVendor />
-                    <DelateVendorMenu/>
+                    <AdminBtn />
                 </div>
 
             )}
-            <AdminBtn />
 
             <CardList />
             <Footer /> 

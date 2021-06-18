@@ -1,7 +1,6 @@
 import { ListItem } from '@material-ui/core';
 import { Drawer, List } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
-import { Button } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -94,7 +93,15 @@ const AdminPanelCard = () => {
       '&:hover': {
         background: 'linear-gradient(to right, #194ddb, #0d0b69)',
       }
-  }
+    },
+    adminModalButton: {
+      fontSize: 16,
+      color: '#1877F2',
+      background: 'transparent',
+      '&:hover': {
+        background: 'none'
+      }
+    }
   })
 
   const styles = useStyles();
@@ -164,7 +171,7 @@ const AdminPanelCard = () => {
   )
     return (
         <div>
-          <Button onClick={toggleDrawer(true)}>Add a promotion</Button>
+          <button onClick={toggleDrawer(true)} className={styles.adminModalButton}>Add a promotion</button>
           <Drawer anchor={'right'}
                   open={state}
                   onClose={toggleDrawer(false)}>
