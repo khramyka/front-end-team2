@@ -17,7 +17,7 @@ const ExtendedCard: React.FC = () => {
     };
 
     return (
-        <div className="ExtendedCard">
+        <div className="ExtendedCard" id="excard">
             <Button
                 variant="outlined"
                 color="secondary"

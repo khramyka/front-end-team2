@@ -40,6 +40,7 @@ export default function FullWidthGrid() {
                 console.log("no element");
             } else {
                 myElement.style.display = "block";
+                document.getElementById("excard")!.scrollIntoView({behavior: 'smooth'});
             }
         }
 
