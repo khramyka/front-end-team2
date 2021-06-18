@@ -36,9 +36,12 @@ const ExtendedCard: React.FC = () => {
                     />
                 </div>
                 <div className="ExtendedCard__Info">
-                    <h3 className="brandName">
-                        Mi-mi store <span className="discount">-50%</span>
-                    </h3>
+                    <div className="brandTitle">
+                        <h3 className="brandName">
+                            Mi-mi store <span className="discount">-50%</span>
+                        </h3>
+                    </div>
+
 
                     <div className="shortDescription">
             <span>
@@ -54,9 +57,12 @@ const ExtendedCard: React.FC = () => {
                     </div>
 
                     <div className="ExtendedCard__actions">
-                        <Button variant="contained" color="primary">
+                        <button type="submit" className="submit btn--extCard">
                             Use Coupon
-                        </Button>
+                        </button>
+                       {/* <Button variant="contained" color="primary">
+                            Use Coupon
+                        </Button>*/}
                        {/* <span className="couponsLeft">5 coupons left</span>*/}
                     </div>
                 </div>
