@@ -9,6 +9,8 @@ import Grid from "@material-ui/core/Grid";
 import SaleCard from "../../card/SaleCard/SaleCard";
 import FilterListIcon from "@material-ui/icons/FilterList";
 
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 1200,
@@ -58,7 +60,7 @@ export default function FullWidthGrid() {
     return (
         <div className={classes.root}>
             {/*Header component*/}
-             <Header/>
+            {/* <Header/>*/}
             {/*Header component*/}
 
             {/*main content in page*/}
@@ -76,7 +78,7 @@ export default function FullWidthGrid() {
                     <Grid container spacing={3} justify="center">
                         {[0, 1, 2, 3, 4, 5].map((value) => (
                             <Grid key={value} item onClick={handleClick}>
-                                <SaleCard />
+                                <SaleCard/>
                             </Grid>
                         ))}
                     </Grid>
@@ -85,7 +87,7 @@ export default function FullWidthGrid() {
             {/*main content in page*/}
 
             {/*Footer component*/}
-            <Footer />
+          {/*  <Footer />*/}
             {/*Footer component*/}
         </div>
     );
