@@ -82,7 +82,7 @@ export default function FullWidthGrid() {
                             </Grid>
                         ))}
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid xs={12} justify="center">
                         {/*block for pagination*/}
                         1 2 3 4 5 6 7 8
                     </Grid>
