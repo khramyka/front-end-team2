@@ -19,6 +19,7 @@ const ExtendedCard: React.FC = () => {
     return (
         <div className="ExtendedCard" id="excard">
             <Button
+                id="closebtn"
                 variant="outlined"
                 color="secondary"
                 onClick={handleClick}
