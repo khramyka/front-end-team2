@@ -6,12 +6,11 @@ import AdminBtn from "../admin/AdminBtn/AdminBtn";
 
 
 export default function Header() {
-
     return (
         <div className={"header"}>
             <div className={"header__container"}>
                 <Logo/>
-                <NavBar/>
+                <NavBar />
             </div>
         </div>
     );

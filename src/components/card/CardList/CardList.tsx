@@ -93,7 +93,6 @@ const CardList:React.FC = (props) => {
 
     };
     const isAdmin = useAppSelector(state => state.user.admine);
-    console.log(isAdmin)
     return (
         <div className="card-list">
             <ExtendedCard discount={data[card]}/>

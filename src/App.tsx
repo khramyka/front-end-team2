@@ -19,6 +19,7 @@ const  App = () => {
   },[]);
 
 
+
   
 
   if(loading){
@@ -28,9 +29,9 @@ const  App = () => {
     return (
         <div className={"app-wrapper"}>
             <BrowserRouter>
-                {isAuth && <Header/>}
+                {isAuth && <Header />}
                 <div className={"app-wrapper-container"}>
-                    <AppRouter/>
+                    <AppRouter />
                 </div>
                 {isAuth && <Footer/>}
             </BrowserRouter>

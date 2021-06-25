@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "10px",
         [theme.breakpoints.down('xs')]: {
             marginTop: "55px",
-            marginLeft: "-15px",
+            marginLeft: "15px",
         }
     },
 }));
@@ -54,10 +54,9 @@ const NavBar = () => {
     };
 
 
-    let admin = true;
     const userName = useAppSelector(state => state.user.userName);
-    console.log(userName)
     const userEmail = useAppSelector(state => state.user.email);
+    const admin: boolean = useAppSelector(state => state.user.admine)
 
     return <>
         <div className={"desktop-nav"}>
@@ -77,11 +76,7 @@ const NavBar = () => {
             <Menu
                 transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
-                }}
-                anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: 'right',
+                    horizontal: 'left',
                 }}
                 className={classes.menu}
                 id="simple-menu"
