@@ -2,6 +2,9 @@ import React,{Fragment,useState,FC} from 'react';
 import './Like.scss'
 import {VKShareButton,TelegramShareButton,FacebookShareButton} from 'react-share'
 import {VKIcon,FacebookIcon,TelegramIcon} from "react-share";
+import Menu from "@material-ui/core/Menu";
+import { Box } from '@material-ui/core';
+import { Drawer } from '@material-ui/core';
 
 interface LikeProps {
     discount?: {
@@ -15,7 +18,7 @@ interface LikeProps {
 const Like: FC<LikeProps> = ({discount}) => {
     const [state, setState] = useState({
         firstModal: false,
-        secondModal: false
+        secondModal: false,
         }
     )
     const cardMore = () => {
@@ -34,16 +37,34 @@ const Like: FC<LikeProps> = ({discount}) => {
             }
         })
     }
+    /*onClick={()=>{setState(prev=>{return {...prev,firstModal:false,secondModal: false}})}}*/
+    const deActivateMode = (e: any) => {
+        if(e && e.relatedTarget){
+            e.relatedTarget.click();
+        }
+        setState(prev => {
+            return{
+                ...prev,
+                firstModal: false,
+                secondModal: false
+            }
+
+        })
+    }
+
+
+
+
     return (
-        <Fragment>
+        <Fragment >
             <div className="card-buttons">
                 <button className="card-buttons__item">
                     <img src="image/icons/Like.svg" alt=""/>
                 </button>
-                <button className="card-buttons__item" onClick={cardMoreSocial}>
+                <button className="card-buttons__item" onClick={cardMoreSocial} onBlur={deActivateMode}  >
                     <img src="image/icons/Share.svg" alt=""/>
                 </button>
-                <button className="card-buttons__info" onClick={cardMore}>
+                <button className="card-buttons__info" onClick={cardMore} >
                     <img src="image/icons/Info.svg" alt=""/>
                 </button>
             </div>
@@ -65,12 +86,13 @@ const Like: FC<LikeProps> = ({discount}) => {
                             </button>
                         </div>
                     </div>
+
                 ) :
             null}
             {state.secondModal===true ? (
                 <div className="card-container">
-                    <div className="card-drop" onClick={()=>{setState(prev=>{return {...prev,firstModal:false,secondModal: false}})}}/>
-                    <div className="card-more">
+                    <div className="card-drop" />
+                    <div className="card-more" >
                         <FacebookShareButton
                             url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
                             <FacebookIcon  size = {45} round={true}></FacebookIcon>
@@ -87,6 +109,7 @@ const Like: FC<LikeProps> = ({discount}) => {
                         </VKShareButton>
                     </div>
                 </div>
+
                 ):null}
 
         </Fragment>
