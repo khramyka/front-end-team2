@@ -61,7 +61,7 @@ const Like: FC<LikeProps> = ({discount}) => {
                 <button className="card-buttons__item">
                     <img src="image/icons/Like.svg" alt=""/>
                 </button>
-                <button className="card-buttons__item" onClick={cardMoreSocial} onBlur={deActivateMode}  >
+                <button className="card-buttons__item" onClick={cardMoreSocial} onBlur={deActivateMode} >
                     <img src="image/icons/Share.svg" alt=""/>
                 </button>
                 <button className="card-buttons__info" onClick={cardMore} >
@@ -75,7 +75,7 @@ const Like: FC<LikeProps> = ({discount}) => {
                             <button className="card-more__item">
                                 <img src="image/icons/Like-back.svg" alt=""/>
                             </button>
-                            <button className="card-more__item" onClick={cardMoreSocial}>
+                            <button className="card-more__item" onClick={cardMoreSocial} onBlur={deActivateMode} >
                                 <img src="image/icons/Share-back.svg" alt=""/>
                             </button>
                             <button className="card-more__item">
@@ -93,16 +93,16 @@ const Like: FC<LikeProps> = ({discount}) => {
                 <div className="card-container">
                     <div className="card-drop" />
                     <div className="card-more" >
-                        <FacebookShareButton
+                        <FacebookShareButton onClick={(e)=>e.stopPropagation()}
                             url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
                             <FacebookIcon  size = {45} round={true}></FacebookIcon>
                         </FacebookShareButton>
-                        <TelegramShareButton
+                        <TelegramShareButton onClick={(e)=>e.stopPropagation()}
                             url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
 
                             <TelegramIcon size = {45} round={true}></TelegramIcon>
                         </TelegramShareButton>
-                        <VKShareButton
+                        <VKShareButton onClick={(e)=>e.stopPropagation()}
                             url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
 
                             <VKIcon size = {45} round={true}></VKIcon>
