@@ -33,7 +33,7 @@ export { default as GraphInfo } from "./admin/statistic/GraphInfo/GraphInfo";
 export { default as Graph } from "./admin/statistic/Graph/Graph";
 
 export { default as SelectMultiple} from "./common/SearchBar/SelectMultiple/SelectMultiple";
-export { default as Сategory} from "./common/SearchBar/SelectMultiple/Сategory";
+export { default as Category} from "./common/SearchBar/SelectMultiple/Сategory";
 export { default as MySelect } from "./common/SearchBar/Select/MySelect";
 export { default as ControlLabel } from "./common/SearchBar/ControlLable/ControlLabel";
 export { default as RatingStar } from "./common/SearchBar/Rating/RatingStar/RatingStar"

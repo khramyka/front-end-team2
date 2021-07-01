@@ -5,7 +5,7 @@ import {
     MySelect,
     SelectMultiple,
     ControlLabel,
-    Сategory,
+    Category,
     ContainerDataPiker,
     Submitbutton
 } from "../../index";
@@ -26,9 +26,9 @@ const SearchBar =()=>{
             {pathname !== STATISTIC_ROUTE && <div className="containerFavorite">
                 <ControlLabel lable={"Favorite"} />
             </div>}
-            <Сategory data={arr2} clName={"location"} name={"Location"} />
+            <Category data={arr2} clName={"location"} name={"Location"} />
             <SelectMultiple data={arr} clName={"location"} name={"Vendor"} setArrTag={null}/>
-            <Сategory data={arr2} clName={"location"} name={"Category"} />
+            <Category data={arr2} clName={"location"} name={"Category"} />
             {pathname === STATISTIC_ROUTE &&  <SelectMultiple data={arr} clName={"location"} name={"User"} setArrTag={null}/>}
             {pathname === STATISTIC_ROUTE &&  <ContainerDataPiker/>}
             <Submitbutton name={"Apply"} heandekCklik={(e:any)=>{}} classN={"submit"}/>
