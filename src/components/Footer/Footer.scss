@@ -1,15 +1,23 @@
 .footer {
-  background-color: #fff;
+
   text-align: center;
-  margin-top: 10px;
-  padding: 10px 20px 20px 20px;
-  box-shadow: 0 6px 2px 5px;
+  border-top: black 1px solid;
+  margin-top: 20px;
 
   // font-family: "Mulish";
-  .Logo{
+  .Logo {
     :nth-child(3) {
       display: none;
-    }}
+    }
+    :nth-child(1) {
+      display: none;
+    }
+    @media screen and (max-width: 992px) {
+      margin: 10px;
+    }
+
+  }
+
 }
 
 .footerContact {
@@ -20,8 +28,8 @@
 
 .footerWeb {
   display: inline-block;
-  margin-top: 35px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 8px;
   padding-bottom: 5px;
   border-bottom: 1px solid #000;
 
@@ -42,15 +50,31 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
   &:last-child {
     margin-bottom: 0;
+  }
+  &__social {
+    font-size: 30px;
+    a {
+      text-decoration: none;
+      color: #000;
+      &:hover {
+        color: #1877f2;
+      }
+    }
+    @media screen and (max-width: 992px) {
+      font-size: 30px;
+    }
   }
 
   img {
     min-width: 24px;
     height: auto;
-    margin-right: 7px;
+    margin-right: 19px;
+    cursor: pointer;
+    &:hover{
+
+    }
   }
 
   a {
@@ -65,18 +89,7 @@
 }
 
 .footerSocial {
-  margin-top: 22px;
-  font-size: 46px;
-
-  a {
-    text-decoration: none;
-    color: #000;
-
-    &:hover {
-      color: #1877f2;
-    }
-  }
-
+  margin-top: 0;
   p {
     font-size: 9px;
     margin-top: 26px;
@@ -85,11 +98,15 @@
 
 @media screen and (min-width: 992px) {
   .footer {
-    &__container{
-        margin: 0 auto;
-        max-width: 1260px;
+    &__container {
+      margin: 0 auto;
+      max-width: 1260px;
       display: flex;
       justify-content: space-between;
+      .logo__name{
+        font-weight: 500;
+        font-size: 24px;
+      }
     }
 
 
@@ -105,19 +122,47 @@
   }
 
   .footerWeb {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .footerLink {
     a {
-      font-size: 18px;
+      font-size: 28px;
+      cursor: pointer;
+      img{
+        :hover{
+          color: #1877f2;
+        }
+      }
+
+    }
+
+    img {
+      width: 25px;
+      height: 25px;
+      padding: 0;
+
     }
   }
 
   .footerSocial {
+    display: flex;
+    align-items: flex-end;
     p {
-      font-size: 16px;
-      margin-top: 41px;
+      font-size: 12px;
+
     }
   }
-} ;
+}
+.copied{
+  color: #FFFFFF;
+  background-color: rgba(10, 10, 10, 0.8);
+  padding: 15px;
+  border-radius: 30px;
+  position: fixed;
+  top: 3%;
+  left: 50%;
+  display: block;
+}
+
+;

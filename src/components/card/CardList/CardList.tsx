@@ -1,5 +1,5 @@
-import React, { MouseEvent, useState } from 'react';
-import { SaleCard } from '../../index';
+import React, {MouseEvent, useState} from 'react';
+import { SaleCard} from '../../index';
 import "./CardList.scss";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -8,7 +8,9 @@ import ExtendedCard from "../../card/ExtendedCard2/ExtendedCard";
 import AdminBtn from '../../admin/AdminBtn/AdminBtn';
 import Sort from "../../common/Sort/Sort";
 import ChipsArray from "../../common/ChipsArray/ChipsArray";
-import { useAppSelector } from "../../../store/Redux-toolkit-hook";
+import {useAppSelector} from "../../../store/Redux-toolkit-hook";
+
+
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -22,7 +24,10 @@ const useStyles = makeStyles((theme) =>
     }),
 );
 
-const CardList: React.FC = (props) => {
+
+
+
+const CardList:React.FC = (props) => {
 
     const NUMBER_CARD = 8
 
@@ -64,6 +69,7 @@ const CardList: React.FC = (props) => {
     const handleClick = (e: any, index: number) => {
         const cName: any = e.target.className;
         const tName: any = e.target.tagName;
+        console.log('tName', tName);
 
         if ((cName === '') || (cName === 'card-more') || (cName === 'card-drop') || (tName === 'circle') || (tName === 'path')) {
             return null
@@ -88,13 +94,17 @@ const CardList: React.FC = (props) => {
                 if (page === 1) {
                     setCard(index)
                 } else {
-                    setCard(index + (page - 1) * NUMBER_CARD)
+                    setCard(index + (page - 1)*NUMBER_CARD)
                 }
+
+                console.log('index', index)
+                console.log('page', page);
             }
         }
+
     };
     const isAdmin = useAppSelector(state => state.user.admine);
-
+    console.log(isAdmin)
     return (
         <div className="card-list">
             <ExtendedCard discount={data[card]} />
@@ -102,7 +112,7 @@ const CardList: React.FC = (props) => {
             <div className={"sort-admin"}>
                 <Sort />
                 {isAdmin &&
-                    <AdminBtn />}
+                <AdminBtn />}
             </div>
             <div className={"chips"}>
                 <ChipsArray />
@@ -131,10 +141,11 @@ const CardList: React.FC = (props) => {
                         page={page} onChange={handleChange} />
                 </div>
             </Grid>
+
+            {/*<div className={classes.root}>*/}
+            {/*    <Pagination count={Math.ceil(data.length/4)} variant="outlined" color="primary" page={page} onChange={handleChange} />*/}
+            {/*</div>*/}
         </div>
-        // {/*<div className={classes.root}>*/}
-        // {/*    <Pagination count={Math.ceil(data.length/4)} variant="outlined" color="primary" page={page} onChange={handleChange} />*/}
-        // {/*</div>*/}
     );
 };
 

@@ -73,10 +73,6 @@ export default function AdminBtn(){
                     vertical: 'top',
                     horizontal: 'right',
                 }}
-                anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: 'left',
-                }}
                 elevation={0}
             className={classes.menu}
             id="admin-menu"

@@ -1,6 +1,6 @@
 import "./Sort.scss"
 import React, {useState} from "react";
-import {FormControl, makeStyles, NativeSelect} from "@material-ui/core";
+import {FormControl, makeStyles} from "@material-ui/core";
 import { InputLabel } from "@material-ui/core";
 import { Select } from "@material-ui/core";
 import MenuItem from '@material-ui/core/MenuItem';
@@ -45,6 +45,7 @@ const classes = useStyles();
                         <MenuItem value={"Popular"}>Popular</MenuItem>
                         <MenuItem value={"New"}>New</MenuItem>
                         <MenuItem value={"Hot Sales"}>Hot Sales</MenuItem>
+                        <MenuItem value={"Hot Sales"}>Coming soon</MenuItem>
                     </Select>
                 </FormControl>
 

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, FC } from 'react';
+import React,{Fragment,useState,FC} from 'react';
 import './Like.scss'
 import { VKShareButton, TelegramShareButton, FacebookShareButton } from 'react-share'
 import { VKIcon, FacebookIcon, TelegramIcon } from "react-share";
@@ -30,7 +30,7 @@ const Like: FC<LikeProps> = (props) => {
     const [state, setState] = useState({
         firstModal: false,
         secondModal: false
-    }
+        }
     )
     const cardMore = () => {
         setState(prev => {
@@ -53,6 +53,24 @@ const Like: FC<LikeProps> = (props) => {
         const filteredArr = props.cards.filter((item: any) => item.id !== currentCard.id);
         props.updateData(filteredArr)
     }
+    /*onClick={()=>{setState(prev=>{return {...prev,firstModal:false,secondModal: false}})}}*/
+    const deActivateMode = (e: any) => {
+        if(e && e.relatedTarget){
+            e.relatedTarget.click();
+        }
+        setState(prev => {
+            return{
+                ...prev,
+                firstModal: false,
+                secondModal: false
+            }
+
+        })
+    }
+
+
+
+
 
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -78,10 +96,10 @@ const Like: FC<LikeProps> = (props) => {
         <Fragment>
             <div className="card-buttons">
                 <button className="card-buttons__item">
-                    <img src="image/icons/Like.svg" alt="" />
+                    <img src="image/icons/Like.svg" alt=""/>
                 </button>
-                <button className="card-buttons__item" onClick={cardMoreSocial}>
-                    <img src="image/icons/Share.svg" alt="" />
+                <button className="card-buttons__item" onClick={cardMoreSocial} onBlur={deActivateMode} >
+                    <img src="image/icons/Share.svg" alt=""/>
                 </button>
                 <div className="settings-wrapper">
                     <button aria-describedby={id} onClick={handleClick} className='settings'>
@@ -115,16 +133,15 @@ const Like: FC<LikeProps> = (props) => {
                     <img src="image/icons/Info.svg" alt="" />
                 </button>
             </div>
-            {
-                state.firstModal === true ? (
+            {state.firstModal===true ? (
                     <div className="card-container">
-                        <div className="card-drop" onClick={() => { setState(prev => { return { ...prev, firstModal: false, secondModal: false } }) }} />
+                        <div className="card-drop" onClick={()=>{setState(prev=>{return {...prev,firstModal:false,secondModal: false}})}}/>
                         <div className="card-more">
                             <button className="card-more__item">
                                 <img src="image/icons/Like.svg" alt="" />
                             </button>
-                            <button className="card-more__item" onClick={cardMoreSocial}>
-                                <img src="image/icons/Share.svg" alt="" />
+                            <button className="card-more__item" onClick={cardMoreSocial} onBlur={deActivateMode} >
+                                <img src="image/icons/Share-back.svg" alt=""/>
                             </button>
                             <button className="card-more__item">
                                 <AdminEditCardPanel currentCard={props.discount}
@@ -137,31 +154,31 @@ const Like: FC<LikeProps> = (props) => {
                         </div>
                     </div>
                 ) :
-                    null
-            }
-            {
-                state.secondModal === true ? (
-                    <div className="card-container">
-                        <div className="card-drop" onClick={() => { setState(prev => { return { ...prev, firstModal: false, secondModal: false } }) }} />
-                        <div className="card-more">
-                            <FacebookShareButton
-                                url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
-                                <FacebookIcon size={45} round={true}></FacebookIcon>
-                            </FacebookShareButton>
-                            <TelegramShareButton
-                                url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
-                                <TelegramIcon size={45} round={true}></TelegramIcon>
-                            </TelegramShareButton>
-                            <VKShareButton
-                                url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
-                                <VKIcon size={45} round={true}></VKIcon>
-                            </VKShareButton>
-                        </div>
-                    </div>
-                ) : null
-            }
-        </Fragment >
+            null}
+            {state.secondModal===true ? (
+                <div className="card-container">
+                    <div className="card-drop" />
+                    <div className="card-more" >
+                        <FacebookShareButton onClick={(e)=>e.stopPropagation()}
+                            url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
+                            <FacebookIcon  size = {45} round={true}></FacebookIcon>
+                        </FacebookShareButton>
+                        <TelegramShareButton onClick={(e)=>e.stopPropagation()}
+                            url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
 
+                            <TelegramIcon size = {45} round={true}></TelegramIcon>
+                        </TelegramShareButton>
+                        <VKShareButton onClick={(e)=>e.stopPropagation()}
+                            url="https://github.com/khramyka/front-end-team2/tree/SearchBar/public">
+
+                            <VKIcon size = {45} round={true}></VKIcon>
+                        </VKShareButton>
+                    </div>
+                </div>
+
+                ):null}
+
+        </Fragment>
 
     );
 };

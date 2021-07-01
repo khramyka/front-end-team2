@@ -1,11 +1,11 @@
-.card-buttons {
+.card-buttons{
   width: 40px;
-  &__item {
+  &__item{
     background: transparent;
     cursor: pointer;
     margin-bottom: 15px;
   }
-  &__info {
+  &__info{
     display: none;
     background: transparent;
     cursor: pointer;
@@ -16,14 +16,14 @@
     right: 8px;
   }
 }
-.card-container {
+.card-container{
   position: absolute;
   right: 0;
   top: 0;
   left: 0;
   bottom: 0;
 }
-.card-drop {
+.card-drop{
   position: absolute;
   left: 0;
   top: 0;
@@ -53,12 +53,12 @@
   .card-drop {
     width: 170px;
   }
-  .card-buttons {
+  .card-buttons{
     width: 20px;
-    &__item {
+    &__item{
       display: none;
     }
-    &__info {
+    &__info{
       display: block;
     }
   }
