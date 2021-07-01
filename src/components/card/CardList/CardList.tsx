@@ -146,6 +146,7 @@ const CardList:React.FC = (props) => {
             {/*    <Pagination count={Math.ceil(data.length/4)} variant="outlined" color="primary" page={page} onChange={handleChange} />*/}
             {/*</div>*/}
         </div>
+        </div>
     );
 };
 
