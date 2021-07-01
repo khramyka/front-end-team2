@@ -3,10 +3,19 @@ import {Logo} from '../index';
 import "./Footer.scss";
 import phone from '../../images/icons/phone.svg';
 import email from '../../images/icons/email.svg';
+import {Button, Tooltip, withStyles} from "@material-ui/core";
+import {makeStyles} from "@material-ui/styles";
+import { Theme } from '@material-ui/core';
 
+const HtmlTooltip = withStyles((theme: Theme) => ({
+    tooltip: {
+        fontSize: theme.typography.pxToRem(16),
 
+    },
+}))(Tooltip);
 
 const Footer = () => {
+    /*const classes = useStyles();*/
 
     const [state, setState] = useState(false)
     const copyLink = () => {
@@ -28,26 +37,45 @@ const Footer = () => {
                 <div className="footerContact">
                     <a className="footerWeb" href="www.exadel.com">www.exadel.com</a>
                     <div className="footerLink">
-                        <a id={"copy-number"} title="copy" onClick={copyLink} ><img src={phone} alt="icon"/></a>
-                        <a id={"number"} href="tel:+3802222222">+380 2222 222</a>
+
+                        <HtmlTooltip   title={"+380 2222 222"}   interactive>
+                        <img onClick={copyNumber} src={phone} alt="icon"/>
+                        </HtmlTooltip>
+
+                        <HtmlTooltip title={"info@exadel.com"} interactive>
+                            <img onClick={copyLink} src={email} alt="icon"/>
+                        </HtmlTooltip>
+                        {state &&
+                        <span className={"copied"}>link copied</span>
+                        }
+
+                        <div className={"footerLink__social"}>
+                            <a href="https://www.linkedin.com/company/exadel/" target="_blank">
+                                <i className="icon-linkedin"></i>
+                            </a>
+                            <a href="https://www.facebook.com/exadelinc/" target="_blank">
+                                <i className="icon-facebook"></i>
+                            </a>
+                        </div>
+                        {/*<a id={"number"} href="tel:+3802222222">+380 2222 222</a>*/}
                     </div>
 
-                    <div className="footerLink">
+                    {/*<div className="footerLink">
                         <a id={"copy-email"} onClick={copyNumber}  title="copy"><img src={email} alt="icon"/></a>
                         <a id={"email"} href="mailto: info@exadel.com">info@exadel.com</a>
                         {state &&
                         <span className={"copied"}>link copied</span>
                         }
 
-                    </div>
-                    <div className={"footerLink__social"}>
+                    </div>*/}
+                    {/*<div className={"footerLink__social"}>
                         <a href="https://www.linkedin.com/company/exadel/" target="_blank">
                             <i className="icon-linkedin"></i>
                         </a>
                         <a href="https://www.facebook.com/exadelinc/" target="_blank">
                             <i className="icon-facebook"></i>
                         </a>
-                    </div>
+                    </div>*/}
                 </div>
 
                 <div className="footerSocial">
