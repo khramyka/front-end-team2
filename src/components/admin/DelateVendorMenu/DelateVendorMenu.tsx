@@ -12,11 +12,16 @@ import {useAppSelector} from "../../../store/Redux-toolkit-hook";
 import DelateVendorMenuEdit from "./DelateVendorMenuEdit";
 import {getVendorAll} from "../../../http/filtersApi";
 import {addVendor} from "../../../store/filtersStore";
+import SimpleSnackbar from "../../common/SimpleSnackbar/SimpleSnackbar";
+import ModalWithConfirm from "../../common/ModalWithConfirm/ModalWithConfirm";
 
 const DelateVendorMenu = () => {
     const [state, setState] = React.useState(false);
     const {vendor} = useAppSelector(state => state.filters)
-
+    const [snackBarSuccess, setSnackBarSuccess] = React.useState(false)
+    const [snackBarSuccessLocation, setSnackBarSuccessLocation] = React.useState(false)
+    const [snackBarError, setSnackBarError] = React.useState(false)
+    const [snackBarSuccessDeleted, setSnackBarSuccessDeleted] = React.useState(false)
     const toggleDrawer = (open: any) => (event: any) => {
         setState(open);
     }
@@ -214,11 +219,38 @@ const DelateVendorMenu = () => {
                         <span
                             className={styles.attention__span}>{t`Removing a vendor will delete all its discounts`}</span>
                     </div>
-                    {vendor.map((value: any) => <DelateVendorMenuEdit styles={styles} key={value.id} value={value} />)}
+                    {vendor.map((value: any) => <DelateVendorMenuEdit styles={styles} key={value.id}
+                                                                      value={value} success={(success: boolean) => setSnackBarSuccess(success)}
+                                                                      error={(success: boolean) => setSnackBarError(success)}
+                                                                      locationUpdate={(success: boolean) => setSnackBarSuccessLocation(success)}
+                                                                      deleted={(deleted: boolean) => setSnackBarSuccessDeleted(deleted)}
+                    />)}
                     <button className={styles.adminPanel}>
                         <AdminPanelVendor/>
                     </button>
                 </Grid>
+
+                <SimpleSnackbar
+                    setSnackbar={setSnackBarError}
+                    snackbarState={snackBarError}
+                    label='Something error, please try again'
+                    type='error' />
+                <SimpleSnackbar
+                    setSnackbar={setSnackBarSuccess}
+                    snackbarState={snackBarSuccess}
+                    label='Vendor is successfully updated'
+                    type='success' />
+                <SimpleSnackbar
+                    setSnackbar={setSnackBarSuccessLocation}
+                    snackbarState={snackBarSuccessLocation}
+                    label='Location is successfully updated'
+                    type='success' />
+                <SimpleSnackbar
+                    setSnackbar={setSnackBarSuccessDeleted}
+                    snackbarState={snackBarSuccessDeleted}
+                    label='Vendor is successfully deleted'
+                    type='success' />
+
             </ListItem>
         </List>
     )

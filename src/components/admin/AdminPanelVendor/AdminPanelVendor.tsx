@@ -7,11 +7,19 @@ import React from 'react';
 import DropZone from '../../common/DropZone/DropZone';
 import KeyboardBackspaceOutlinedIcon from '@material-ui/icons/KeyboardBackspaceOutlined';
 import "./AdminPanelVendor.scss";
-import { postVendor, postVendorLocation, uploadImage } from "../../../http/filtersApi";
+import {
+    getAllVendorLocation,
+    getVendorAll,
+    postVendor,
+    postVendorLocation,
+    uploadImage
+} from "../../../http/filtersApi";
 import { t } from 'ttag';
 import { Alert } from '@material-ui/lab';
 import { locale } from "../../common/LangSwitcher/i18nInit";
 import SimpleSnackbar from '../../common/SimpleSnackbar/SimpleSnackbar';
+import {addVendor, addVendorLocation} from "../../../store/filtersStore";
+import {useAppDispatch} from "../../../store/Redux-toolkit-hook";
 
 interface ChipData {
     key: number;
@@ -22,6 +30,7 @@ interface ChipData {
 
 
 const AdminPanelVendor = () => {
+    const dispatch = useAppDispatch();
     const [state, setState] = React.useState(false);
     const [uploadFileName, setUploadFileName] = React.useState<string | Blob>('');
     const [fileName, setFileName] = React.useState<string | Blob>('');
@@ -87,7 +96,7 @@ const AdminPanelVendor = () => {
         }
     }
 
-    const addVendor = async () => {
+    const VendorAdd = async () => {
         if (checkValidation()) {
             const logo = await addLogoVendor()
             const logoURL = logo?.data.message
@@ -100,6 +109,8 @@ const AdminPanelVendor = () => {
                 vendorId: vendorId
             }))
             clearForm()
+            getAllVendorLocation().then(resolve =>dispatch(addVendorLocation(resolve.data)) ).catch(f=> console.log(f));
+            getVendorAll().then(resolve=> dispatch(addVendor(resolve)));
             setSuccessSnackbar(true)
         } else {
             setErrorSnackbar(true)
@@ -472,7 +483,7 @@ const AdminPanelVendor = () => {
                             <DropZone uploadPhoto={(image: any) => setImage(image)} />
                         </div>
                         <span className={styles.uploadedFileName}>{uploadFileName}</span>
-                        <Button onClick={addVendor}
+                        <Button onClick={VendorAdd}
                             className={styles.submitButton}>{t`Submit`}
                         </Button>
                         <SimpleSnackbar

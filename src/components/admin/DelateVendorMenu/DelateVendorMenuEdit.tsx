@@ -8,18 +8,20 @@ import "./DelateVendorMenu.scss";
 import {t} from 'ttag';
 import {
     deleteVendorId,
-    deleteVendorLocationId, getVendorAll,
+    deleteVendorLocationId, getAllVendorLocation, getVendorAll,
     getVendorLocation,
     postVendorLocation, restVendorId,
     uploadImage
 } from "../../../http/filtersApi";
-import {addVendor} from "../../../store/filtersStore";
+import {addVendor, addVendorLocation} from "../../../store/filtersStore";
 import {useAppDispatch} from "../../../store/Redux-toolkit-hook";
 import {locale} from "../../common/LangSwitcher/i18nInit";
+import SimpleSnackbar from "../../common/SimpleSnackbar/SimpleSnackbar";
+import ModalWithConfirm from "../../common/ModalWithConfirm/ModalWithConfirm";
 
 
 
-const DelateVendorMenuEdit = ({styles, value}) => {
+const DelateVendorMenuEdit = ({styles, value, success, error, locationUpdate, deleted}) => {
     interface ChipData {
         key: number;
         country: string,
@@ -34,6 +36,9 @@ const DelateVendorMenuEdit = ({styles, value}) => {
     const [state, setState] = React.useState(false);
     const [uploadFileName, setUploadFileName] = React.useState<string>(value.image);
     const [fileName, setFileName] = React.useState<string | Blob>('');
+    const [snackBarSuccess, setSnackBarSuccess] = React.useState(false)
+    const [snackBarError, setSnackBarError] = React.useState(false)
+    const [openModal, setOpenModal] = React.useState(false)
     const [data, setData] = React.useState({
         email: value.email,
         description: value.description,
@@ -53,6 +58,8 @@ const DelateVendorMenuEdit = ({styles, value}) => {
         !edit && getVendorLocation(value.id).then(v => setLocation(v.data.content))
         console.log(location)
         setEdit(!edit)
+
+
         // console.log(data.description)
         // console.log(data.name)
         // console.log(data.email)
@@ -60,19 +67,23 @@ const DelateVendorMenuEdit = ({styles, value}) => {
         // console.log(fileName)
     }
 
-    const deleteVendor = () => {
-       let conf = window.confirm("Delete vendor? If you will delete vendor his promo will deleted also");
-        if(conf){
-            deleteVendorId(value.id).then(v => getVendorAll().then(resolve=> {dispatch(addVendor(resolve));console.log(resolve)}))
+    const deleteVendor = async () => {
+        try{
+            await deleteVendorId(value.id).then(v => getVendorAll().then(resolve=> {dispatch(addVendor(resolve));console.log(resolve)}))
+            deleted(true)
+            setEdit(false)
         }
-        setEdit(false)
+        catch (e){
+            error(true)
+        }
+
     }
 
     const handleDeleteChip = (chipToDelete: ChipData) => () => {
         if(chipToDelete.key){
         setLocation((chips: any) => chips.filter((chip: any) => chip.key !== chipToDelete.key))
         } else {
-            deleteVendorLocationId(chipToDelete?.id, chipToDelete?.vendorId).then(v => console.log(v))
+            deleteVendorLocationId(chipToDelete?.id, chipToDelete?.vendorId).then(v => locationUpdate(true))
             setLocation((chips: any) => chips.filter((chip: any) => chip.id !== chipToDelete.id))
         }
     };
@@ -87,15 +98,39 @@ const DelateVendorMenuEdit = ({styles, value}) => {
 
     const submitEditVendor = async () => {
         if(fileName !== ''){
-            const logo = await addLogoVendor()
-            const logoURL = logo?.data.message
-            const vendor = await restVendorId(value.id ,{ name: data.name, description: data.description, email: data.email, image: logoURL })
-            getVendorAll().then(resolve=> {dispatch(addVendor(resolve));console.log(resolve)})
+            try {
+                const logo = await addLogoVendor()
+                const logoURL = logo?.data.message
+                const vendor = await restVendorId(value.id ,{ name: data.name, description: data.description, email: data.email, image: logoURL })
+                getVendorAll().then(resolve=> {dispatch(addVendor(resolve));console.log(resolve)})
+                success(true)
+                setEdit(false)
+            }
+            catch (e){
+                error(true)
+                setData({
+                    email: value.email,
+                    description: value.description,
+                    name: value.name,
+                })
+            }
         } else {
-            const vendor = await restVendorId(value.id ,{ name: data.name, description: data.description, email: data.email, image: uploadFileName })
-            getVendorAll().then(resolve=> {dispatch(addVendor(resolve));console.log(resolve)})
+            try {
+                const vendor = await restVendorId(value.id ,{ name: data.name, description: data.description, email: data.email, image: uploadFileName })
+                getVendorAll().then(resolve=> {dispatch(addVendor(resolve));console.log(resolve)})
+                success(true)
+                setEdit(false)
+            }
+            catch (e){
+                error(true)
+                setData({
+                    email: value.email,
+                    description: value.description,
+                    name: value.name,
+                })
+            }
         }
-        setEdit(false)
+
     }
 
     const cancelEdit = () => {
@@ -116,14 +151,22 @@ const DelateVendorMenuEdit = ({styles, value}) => {
     }
 
 
-    const submitAddress = () => {
+    const submitAddress = async () => {
         if (newLocation.newCountry !== '' && newLocation.newCity !== '' && newLocation.newAddress !== '') {
             setNewLocation({
                 newCountry: '',
                 newCity: '',
                 newAddress: '',
             })
-            postVendorLocation({country: newLocation.newCountry, city: newLocation.newCity, addressLine: newLocation.newAddress , vendorId: value.id}).then(v => setLocation([...location, v.data]))
+            try{
+               await postVendorLocation({country: newLocation.newCountry, city: newLocation.newCity, addressLine: newLocation.newAddress , vendorId: value.id}).then(v => setLocation([...location, v.data]))
+                locationUpdate(true)
+                getAllVendorLocation().then(resolve =>dispatch(addVendorLocation(resolve.data)) ).catch(f=> console.log(f));
+            }
+            catch (e) {
+                error(true)
+            }
+
         }
     }
 
@@ -220,7 +263,7 @@ const DelateVendorMenuEdit = ({styles, value}) => {
                 editVendor()
             }}
                       style={{fontSize: 22, marginRight: 5, position: 'relative', bottom: 4, cursor: "pointer"}}/>
-            <DeleteOutlineIcon onClick={() => {deleteVendor()}}
+            <DeleteOutlineIcon onClick={() => {setOpenModal(true)}}
                                style={{
                                    color: '#d32f2f',
                                    fontSize: 22,
@@ -311,9 +354,17 @@ const DelateVendorMenuEdit = ({styles, value}) => {
                             cancelEdit()
                         }} className={styles.address_cancel}>{t`Cancel`}</Button>
                     </div>
+
                 </div>
             </form>
         ) : ''}
+        <ModalWithConfirm
+            setModalState={setOpenModal}
+            modalState={openModal}
+            title={t`Are you sure?`}
+            description={t`Deleted vendor will deleted all him promo!`}
+            action={deleteVendor}
+        />
     </div>
 }
     export default DelateVendorMenuEdit;
