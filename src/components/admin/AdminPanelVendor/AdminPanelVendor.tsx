@@ -18,8 +18,9 @@ import { t } from 'ttag';
 import { Alert } from '@material-ui/lab';
 import { locale } from "../../common/LangSwitcher/i18nInit";
 import SimpleSnackbar from '../../common/SimpleSnackbar/SimpleSnackbar';
-import {addVendor, addVendorLocation} from "../../../store/filtersStore";
-import {useAppDispatch} from "../../../store/Redux-toolkit-hook";
+import { addVendor, addVendorLocation } from "../../../store/filtersStore";
+import { useAppDispatch } from "../../../store/Redux-toolkit-hook";
+import { useForm } from 'react-hook-form';
 
 interface ChipData {
     key: number;
@@ -28,7 +29,6 @@ interface ChipData {
     address: string,
 }
 
-
 const AdminPanelVendor = () => {
     const dispatch = useAppDispatch();
     const [state, setState] = React.useState(false);
@@ -36,8 +36,9 @@ const AdminPanelVendor = () => {
     const [fileName, setFileName] = React.useState<string | Blob>('');
     const [location, setLocation] = React.useState<any[]>([])
     const [openSuccessSnackbar, setSuccessSnackbar] = React.useState(false);
-    const [openErrorSnackbar, setErrorSnackbar] = React.useState(false);
-    const emailReg: any = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    const [openErrorFile, setErrorFile] = React.useState(false);
+    const [openErrorLocation, setErrorLocation] = React.useState(false);
+    const { handleSubmit } = useForm()
     const [data, setData] = React.useState({
         email: '',
         description: '',
@@ -79,44 +80,44 @@ const AdminPanelVendor = () => {
         return uploadImage(formData)
     }
 
-    const checkValidation = () => {
-        const emailCheck = new RegExp(emailReg).test(data.email)
-        if (data.name !== '' &&
-            data.email !== '' &&
-            emailCheck &&
-            data.description !== '' &&
-            data.description.length <= 200 &&
-            data.description.length >= 50 &&
-            location.length !== 0 &&
-            uploadFileName !== '' &&
+    const checkFile = () => {
+        if (uploadFileName !== '' &&
             fileName !== '') {
             return true
         } else {
+            setErrorFile(true)
             return false
         }
     }
 
-    const VendorAdd = async () => {
-        if (checkValidation()) {
+    const checkLocation = () => {
+        if (location.length !== 0) {
+            return true
+        } else {
+            setErrorLocation(true)
+            return false
+        }
+    }
+
+    const createVendor = async () => {
+        if (checkFile() && checkLocation()) {
             const logo = await addLogoVendor()
             const logoURL = logo?.data.message
             const vendor = await postVendor({ name: data.name, description: data.description, email: data.email, image: logoURL })
             const vendorId = vendor.data.id
-            for(const l of location){
+            for (const l of location) {
                 await postVendorLocation({
                     country: l.country,
                     city: l.city,
                     addressLine: l.address,
                     vendorId: vendorId
-            })}
+                })
+            }
             clearForm()
-            await getVendorAll().then(resolve=> dispatch(addVendor(resolve)));
-            await getAllVendorLocation().then(resolve =>dispatch(addVendorLocation(resolve.data)) ).catch(f=> console.log(f));
+            await getVendorAll().then(resolve => dispatch(addVendor(resolve)));
+            await getAllVendorLocation().then(resolve => dispatch(addVendorLocation(resolve.data))).catch(f => console.log(f));
             setSuccessSnackbar(true)
-        } else {
-            setErrorSnackbar(true)
         }
-
     }
 
     const toggleDrawer = (open: any) => (event: any) => {
@@ -394,7 +395,7 @@ const AdminPanelVendor = () => {
     };
 
     const list = () => (
-        <List className={styles.wrapper}>
+        <List className={styles.wrapper} onSubmit={handleSubmit(createVendor)}>
             <ListItem>
                 <form className={styles.form}>
                     <Grid container direction='column'>
@@ -425,7 +426,6 @@ const AdminPanelVendor = () => {
                         })}
                         <TextField className={styles.marginBottom}
                             label={t`Country`}
-                            required
                             value={newLocation.newCountry}
                             onKeyDown={handleKeyDownForCountry}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -434,7 +434,6 @@ const AdminPanelVendor = () => {
                         />
                         <TextField className={styles.marginBottom}
                             label={t`City`}
-                            required
                             value={newLocation.newCity}
                             onKeyDown={handleKeyDownForCity}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -444,7 +443,6 @@ const AdminPanelVendor = () => {
 
                         <TextField className={styles.marginBottom}
                             label={t`Address`}
-                            required
                             value={newLocation.newAddress}
                             onKeyDown={handleKeyDownForAddress}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -453,11 +451,11 @@ const AdminPanelVendor = () => {
                         />
                         <div className={styles.addressButtons}>
                             <Button onClick={submitAddress} className={styles.address_submit}>{t`Submit`}</Button>
-                            <span className={styles.helperTetxtSpan}>Should be minimum 1 location: country, city and address</span>
                         </div>
                         <TextField className={styles.marginBottom}
                             value={data.email}
                             label={t`E-mail`}
+                            type='email'
                             helperText='Example: example@gmail.com'
                             onKeyDown={handleKeyDownForEmail}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData({ ...data, email: e.target.value })}
@@ -484,19 +482,22 @@ const AdminPanelVendor = () => {
                             <DropZone uploadPhoto={(image: any) => setImage(image)} />
                         </div>
                         <span className={styles.uploadedFileName}>{uploadFileName}</span>
-                        <Button onClick={VendorAdd}
-                            className={styles.submitButton}>{t`Submit`}
-                        </Button>
-                        <SimpleSnackbar
-                            setSnackbar={setErrorSnackbar}
-                            snackbarState={openErrorSnackbar}
-                            label='Please, check all fields'
-                            type='error' />
+                        <Button className={styles.submitButton} type='submit'> {t`Submit`} </Button>
                         <SimpleSnackbar
                             setSnackbar={setSuccessSnackbar}
                             snackbarState={openSuccessSnackbar}
                             label='Vendor is successfully created'
                             type='success' />
+                        <SimpleSnackbar
+                            setSnackbar={setErrorFile}
+                            snackbarState={openErrorFile}
+                            label='Please add an image'
+                            type='error' />
+                        <SimpleSnackbar
+                            setSnackbar={setErrorLocation}
+                            snackbarState={openErrorLocation}
+                            label='Should be minimum 1 location: country, city and address'
+                            type='error' />
                     </Grid>
                 </form>
             </ListItem>

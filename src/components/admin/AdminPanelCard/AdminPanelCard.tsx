@@ -70,8 +70,6 @@ const AdminPanelCard = ({ currentCard }) => {
     }
   }
 
-
-
   const { category, vendorLocation, vendor, searchObject, subCategory, } = useAppSelector(state => state.filters);
   console.log(currentCard)
   const [state, setState] = React.useState(false);
@@ -260,10 +258,6 @@ const AdminPanelCard = ({ currentCard }) => {
     setDisableInput(!disableInput)
   }
 
-  const addAddress = () => {
-    setAddressInput(true)
-  }
-
   const submitAddress = async () => {
     if (newLocation.newCountry !== '' && newLocation.newCity !== '' && newLocation.newAddress !== '') {
       setLocation([...location, { key: Math.random(), country: newLocation.newCountry, city: newLocation.newCity, address: newLocation.newAddress }])
@@ -274,10 +268,6 @@ const AdminPanelCard = ({ currentCard }) => {
       })
       postVendorLocation({ country: newLocation.newCountry, city: newLocation.newCity, addressLine: newLocation.newAddress, vendorId: getVendorId() })
     }
-  }
-
-  const cancelAddress = () => {
-    setAddressInput(false);
   }
 
   const addCategory = () => {
