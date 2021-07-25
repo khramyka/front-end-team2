@@ -15,14 +15,15 @@ import { Alert } from '@material-ui/lab';
 import { getVendorId, postCategory, postVendorLocation, getSubCategoryAll, postSubCategory, uploadImage } from "../../../http/filtersApi"
 import { postDiscount, putDiscount } from "../../../http/discountApi"
 import { useAppSelector, useAppDispatch } from "../../../store/Redux-toolkit-hook";
-import {getDiscounts} from "../../../http/discountApi"
+import { getDiscounts } from "../../../http/discountApi"
 import { firsLetterToUpperCase } from "../../../helpers/functionHelpers";
 import { utimes } from 'fs';
 import { captureRejectionSymbol } from 'stream';
-import { addNewCategory, addNewSubCategory, addNewVendorLocation, addSubCategory, addDiscounds} from "../../../store/filtersStore"
+import { addNewCategory, addNewSubCategory, addNewVendorLocation, addSubCategory, addDiscounds } from "../../../store/filtersStore"
 import { CancelPresentationOutlined, ContactsOutlined } from '@material-ui/icons';
 import { saveLocale, locale } from '../../../components/common/LangSwitcher/i18nInit';
 import SimpleSnackbar from '../../common/SimpleSnackbar/SimpleSnackbar';
+import { useForm } from 'react-hook-form';
 interface State extends SnackbarOrigin {
   open: boolean;
 }
@@ -49,38 +50,41 @@ interface Idiscount {
 }
 
 
-const AdminPanelCard = ({currentCard}) => {
-  const getCurrentvendor = () =>{
-    return (vendor.filter(item => item.id === currentCard.vendorId).map(item=>item.name))[0]
+const AdminPanelCard = ({ currentCard }) => {
+  const getCurrentvendor = () => {
+    return (vendor.filter(item => item.id === currentCard.vendorId).map(item => item.name))[0]
   }
 
-  const getCurrentcategory = () =>{
-    return (category.filter(item => item.id === currentCard.categoryId).map(item=>item.name))[0]
+  const getCurrentcategory = () => {
+    return (category.filter(item => item.id === currentCard.categoryId).map(item => item.name))[0]
   }
 
-  const getCurrentSubcategory = () =>{
+  const getCurrentSubcategory = () => {
     return currentCard.subCategories.map(item => item.name)
   }
 
-  const getCurrentTime = () =>{
+  const getCurrentTime = () => {
     return {
       From: new Date(currentCard.startDate * 1000),
-      To : new Date(currentCard.endDate * 1000),
+      To: new Date(currentCard.endDate * 1000),
     }
   }
 
 
-  
+
   const { category, vendorLocation, vendor, searchObject, subCategory, } = useAppSelector(state => state.filters);
   console.log(currentCard)
   const [state, setState] = React.useState(false);
   const [disableInput, setDisableInput] = React.useState(false);
   const [addressInput, setAddressInput] = React.useState(false);
   const [openErrorSnackbarServer, setErrorSnackbarServer] = React.useState(false);
+  const [openErrorLocation, setErrorLocation] = React.useState(false);
+  const [openErrorFile, setErrorFile] = React.useState(false);
+  const [openErrorDate, setErrorDate] = React.useState(false);
   const [categoryInput, setCategoryInput] = React.useState(false);
   const [tagInput, setTagInput] = React.useState(false);
-  const [uploadFileName, setUploadFileName] = React.useState<string>(currentCard ? currentCard.imageLink :'');
-  const [currentImageLinck, delateCurrentImageLinck] = React.useState<string>(currentCard ? currentCard.imageLink: "");
+  const [uploadFileName, setUploadFileName] = React.useState<string>(currentCard ? currentCard.imageLink : '');
+  const [currentImageLinck, delateCurrentImageLinck] = React.useState<string>(currentCard ? currentCard.imageLink : "");
   const [newCategory, setNewCategory] = React.useState('');
   const [newTag, setNewTag] = React.useState('');
   const [fileName, setFileName] = React.useState<string | Blob>('');
@@ -90,11 +94,11 @@ const AdminPanelCard = ({currentCard}) => {
   const [title, setTitle] = React.useState<string>(currentCard ? currentCard.name : '');
   const [description, setDescription] = React.useState<string>(currentCard ? currentCard.fullDescription : '');
   const [discountValue, setDiscountValue] = React.useState(currentCard ? currentCard.percentage : '');
-  const [isOnline, setIsOnline] = React.useState(currentCard ?currentCard.online : false);
+  const [isOnline, setIsOnline] = React.useState(currentCard ? currentCard.online : false);
   const [location, setLocation] = React.useState<any[]>([]);
   const [openSuccessSnackbar, setSuccessSnackbar] = React.useState(false);
-  const [openErrorSnackbar, setErrorSnackbar] = React.useState(false);
-  const [time, setTime] = useState(currentCard ? {To: new Date(currentCard.startDate * 1000),From: new Date(currentCard.endDate * 1000),} : {
+  const { handleSubmit } = useForm()
+  const [time, setTime] = useState(currentCard ? { To: new Date(currentCard.startDate * 1000), From: new Date(currentCard.endDate * 1000), } : {
     To: new Date(),
     From: new Date(),
   });
@@ -203,13 +207,13 @@ const AdminPanelCard = ({currentCard}) => {
   };
 
   const categoryArr = category?.filter((item: any) => item.deleted === false).map(item => firsLetterToUpperCase(item.name));
-  const addLogoDiscount = async() => {
+  const addLogoDiscount = async () => {
     const formData = new FormData();
     formData.append(
       "file",
       fileName,
     );
-    const {data} = await uploadImage(formData);
+    const { data } = await uploadImage(formData);
     delateCurrentImageLinck("");
     return data.message
   }
@@ -218,14 +222,14 @@ const AdminPanelCard = ({currentCard}) => {
   const getVendorId = () => (vendor.filter(item => item.name.toLowerCase() === choeseVendor.toLowerCase()).map(item => item.id))[0];
   const getCategoryId = () => (category.filter(item => item.name.toLowerCase() === choeseCategory.toLowerCase()).map(item => item.id))[0]
 
-  
+
   useEffect(() => {
     setLocation([])
     const arrLocation: any[] = [];
     const choeseLocation = vendorLocation.filter(item => item.vendorId === getVendorId());
     choeseLocation?.forEach(item => {
       if (item.deleted) { return };
-      arrLocation.push({ key: Math.random(), country: item.country, city: item.city, address: item.addressLine, id: item.id})
+      arrLocation.push({ key: Math.random(), country: item.country, city: item.city, address: item.addressLine, id: item.id })
     })
     setLocation([...arrLocation])
   }, [choeseVendor]);
@@ -260,7 +264,7 @@ const AdminPanelCard = ({currentCard}) => {
     setAddressInput(true)
   }
 
-  const submitAddress = async() => {
+  const submitAddress = async () => {
     if (newLocation.newCountry !== '' && newLocation.newCity !== '' && newLocation.newAddress !== '') {
       setLocation([...location, { key: Math.random(), country: newLocation.newCountry, city: newLocation.newCity, address: newLocation.newAddress }])
       setNewLocation({
@@ -499,21 +503,6 @@ const AdminPanelCard = ({currentCard}) => {
     setLocation((chips: any) => chips.filter((chip: any) => chip.key !== chipToDelete.key));
   };
 
-  const [alertState, setAlertState] = React.useState<State>({
-    open: false,
-    vertical: 'top',
-    horizontal: 'right',
-  });
-  const { vertical, horizontal, open } = alertState;
-
-  const handleClickAlert = () => {
-    setAlertState({ ...alertState, open: true });
-  };
-
-  const handleCloseAlert = () => {
-    setAlertState({ ...alertState, open: false });
-  };
-
   const timeString = (time: any) => {
     const year = time.getFullYear();
     const month = time.getMonth();
@@ -522,7 +511,7 @@ const AdminPanelCard = ({currentCard}) => {
     const minutes = time.getMinutes();
     const check = (some: any) => some < 10 ? "0" + some : some;
     const timezoneOffset = Math.abs(time.getTimezoneOffset() / 60);
-    return `${year}-${check(month+1)}-${check(date)}T${check(hours)}:${check(minutes)}+${check(timezoneOffset)}:00`
+    return `${year}-${check(month + 1)}-${check(date)}T${check(hours)}:${check(minutes)}+${check(timezoneOffset)}:00`
   }
 
   const getSubCatygoryId = (subCategory: any, choeseTag: any) => {
@@ -542,7 +531,7 @@ const AdminPanelCard = ({currentCard}) => {
     setLocation([])
     setIsOnline(false)
     setChoeseVendor('')
-    // setChoeseTag(null)
+    setChoeseTag([])
 
   }
 
@@ -550,30 +539,32 @@ const AdminPanelCard = ({currentCard}) => {
     if (location.length !== 0 || isOnline) {
       return true
     } else {
+      setErrorLocation(true)
       return false
     }
   }
 
-  const checkValidation = () => {
-    
-    if (title !== '' &&
-      description.length <= 2000 &&
-      description.length >= 50 &&
-      checkLocation() &&
-      uploadFileName !== '' &&
-      choeseVendor !== '' &&
-      choeseTag.length !== 0 &&
-      discountValue !== ''&&
-      time.To - time.From > 0) {
+  const checkFileName = () => {
+    if (uploadFileName !== '') {
       return true
     } else {
+      setErrorFile(true)
+      return false
+    }
+  }
+
+  const checkDate = () => {
+    if (time.To - time.From > 0) {
+      return true
+    } else {
+      setErrorDate(true)
       return false
     }
   }
 
   const createDiscount = async () => {
-    if (true) {
-    
+    if (checkLocation() && checkFileName() && checkDate()) {
+
       const newDiscount: Idiscount = {
         name: title,
         fullDescription: description,
@@ -592,45 +583,41 @@ const AdminPanelCard = ({currentCard}) => {
       const resolveFnc = (resolve) => {
         setSuccessSnackbar(true);
         clearForm();
-        getDiscounts(searchObject).then(resolve=>dispatch(addDiscounds(resolve.data.content)))
+        getDiscounts(searchObject).then(resolve => dispatch(addDiscounds(resolve.data.content)))
       }
-      if(currentCard){
-        
-        putDiscount(currentCard.id, newDiscount).then(resolve=>{
+      if (currentCard) {
+
+        putDiscount(currentCard.id, newDiscount).then(resolve => {
           resolveFnc(resolve)
-      }).catch(e=> {
-        setErrorSnackbarServer(true)
-      })
-      }else{
+        }).catch(e => {
+          setErrorSnackbarServer(true)
+        })
+      } else {
         console.log(newDiscount)
-        postDiscount(newDiscount).then(resolve=>{
+        postDiscount(newDiscount).then(resolve => {
           resolveFnc(resolve)
-      }).catch(e=> {
-        setErrorSnackbarServer(true)
-      })
-      } 
-    }
-    else {
-      setErrorSnackbar(true)
+        }).catch(e => {
+          setErrorSnackbarServer(true)
+        })
+      }
     }
   }
-  
 
   const list = () => (
     <List className={styles.wrapper}>
       <ListItem>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit(createDiscount)}>
           <Grid container direction='column'>
             <div className={styles.wrapper__title} onClick={toggleDrawer(false)}>
               <KeyboardBackspaceOutlinedIcon style={{ fontSize: 40, position: 'relative', top: 11 }} />
               {t`Back`}
             </div>
-            <span className={styles.modal_label}>{currentCard ? t`Edit a discount`:  t`Add a promotion`}</span>
+            <span className={styles.modal_label}>{currentCard ? t`Edit a discount` : t`Add a promotion`}</span>
             <TextField
               required
               className={styles.marginBottom} label={t`Title`}
               onKeyDown={handleKeyDownForTitle}
-              value={ title}
+              value={title}
               onChange={(e: any) => {
                 setTitle(e.target.value)
               }} />
@@ -638,7 +625,7 @@ const AdminPanelCard = ({currentCard}) => {
               name={t`Category`}
               data={categoryState}
               multi={false}
-              value ={choeseCategory}
+              value={choeseCategory}
               handleChange={setChoeseCategory}
               state={choeseCategory} />
             {categoryInput ?
@@ -658,9 +645,9 @@ const AdminPanelCard = ({currentCard}) => {
             <AdminSelect
               name={t`Tags`}
               data={tags}
-              disabled={currentCard? false : !choeseCategory}
+              disabled={currentCard ? false : !choeseCategory}
               multi={true}
-              valueArr = {choeseTag}
+              valueArr={choeseTag}
               handleChange={setChoeseTag}
               helpText='Please choose category' />
             {tagInput ?
@@ -678,7 +665,7 @@ const AdminPanelCard = ({currentCard}) => {
                 </div>
               </>
               : <span className={styles.address__span} onClick={addTag}>{t`+ Add new tag`}</span>}
-            <AdminSelect name={t`Vendor Name`} disabled={currentCard? true : false} value={choeseVendor} data={vendors} multi={false} handleChange={setChoeseVendor} />
+            <AdminSelect name={t`Vendor Name`} disabled={currentCard ? true : false} value={choeseVendor} data={vendors} multi={false} handleChange={setChoeseVendor} />
             {disableInput ? '' : (
               <>
                 {location.map((data: any) => {
@@ -695,7 +682,6 @@ const AdminPanelCard = ({currentCard}) => {
                   }
                 })}
                 <TextField
-                  required
                   className={styles.marginBottom}
                   disabled={!choeseVendor}
                   label={t`Country`}
@@ -707,7 +693,6 @@ const AdminPanelCard = ({currentCard}) => {
                   }}
                 />
                 <TextField
-                  required
                   className={styles.marginBottom}
                   disabled={!choeseVendor}
                   label={t`City`}
@@ -719,7 +704,6 @@ const AdminPanelCard = ({currentCard}) => {
                   }}
                 />
                 <TextField
-                  required
                   className={styles.marginBottom}
                   disabled={!choeseVendor}
                   label={t`Address`}
@@ -744,7 +728,7 @@ const AdminPanelCard = ({currentCard}) => {
               <label className={styles.checkbox__label} >{t`Online`}</label>
             </div>
             <div className={styles.marginBottom}>
-              <ContainerDataPiker setTime={setTime} time={currentCard ? getCurrentTime() : false}/>
+              <ContainerDataPiker setTime={setTime} time={currentCard ? getCurrentTime() : false} />
             </div>
             <TextField
               className={styles.marginBottom}
@@ -775,21 +759,31 @@ const AdminPanelCard = ({currentCard}) => {
               <DropZone uploadPhoto={(image: any) => setImage(image)} />
             </div>
             <span className={styles.uploadedFileName}>{uploadFileName}</span>
-            <Button className={styles.submitButton} onClick={createDiscount}>{t`Submit`}</Button>
+            <Button className={styles.submitButton} type='submit'>{t`Submit`}</Button>
             <SimpleSnackbar
-              setSnackbar={setErrorSnackbar}
-              snackbarState={openErrorSnackbar}
-              label='Please, check all fields'
+              setSnackbar={setErrorFile}
+              snackbarState={openErrorFile}
+              label='Please add image'
               type='error' />
             <SimpleSnackbar
               setSnackbar={setSuccessSnackbar}
               snackbarState={openSuccessSnackbar}
               label='Discount is successfully created'
               type='success' />
-              <SimpleSnackbar
+            <SimpleSnackbar
               setSnackbar={setErrorSnackbarServer}
               snackbarState={openErrorSnackbarServer}
-              label='discount not added because the server has technical work'
+              label='Discount not added because the server has technical work'
+              type='error' />
+            <SimpleSnackbar
+              setSnackbar={setErrorLocation}
+              snackbarState={openErrorLocation}
+              label='Please add minimum 1 location or choose Online'
+              type='error' />
+            <SimpleSnackbar
+              setSnackbar={setErrorDate}
+              snackbarState={openErrorDate}
+              label='Please change the end of discount'
               type='error' />
           </Grid>
         </form>
