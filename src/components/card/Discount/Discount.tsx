@@ -1,7 +1,7 @@
 import React from 'react';
 import './Discount.scss'
 import {createStyles, makeStyles} from "@material-ui/core/styles";
-
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 interface DiscountProps {
     discount: {
         place: string,
@@ -16,13 +16,14 @@ interface DiscountProps {
 const Discount: React.FC<DiscountProps> = ({ discount, handleClick }) => {
     const date = new Date(discount.endDate * 1000);
     const {vendorLocations} = discount;
-    const location = vendorLocations.map(item => Object.values(item).splice(2,2).join(" "));
+    const location = vendorLocations.map(item => Object.values(item).splice(0,3).join(" "));
      
     
 
     return (
 
             <div className="discount" onClick={handleClick}>
+
                 <h1 className="discount__title">{discount.name}</h1>
                 <div className="discount__info">
                     <strong className="discount__size">{`-${discount.percentage}%`}</strong>
@@ -32,7 +33,7 @@ const Discount: React.FC<DiscountProps> = ({ discount, handleClick }) => {
                     Valid until {date.toLocaleDateString()}
                 </div>
                 <div className="discount__place">
-                    {location.map(item => item)}
+                    <><LocationOnIcon style={{color: "red"}}/>{ (location[0])}</>
                 </div>
             </div>
 

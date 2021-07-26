@@ -23,7 +23,9 @@ authHost.interceptors.response.use((config) => {
                 localStorage.setItem('token', response.data.token);
                 return authHost.request(originalRequest);
             } catch (e) {
-                console.log('НЕ АВТОРИЗОВАН')
+                console.log('НЕ АВТОРИЗОВАН');
+                localStorage.removeItem("token"); 
+                 
             }
         }
     throw error;

@@ -9,9 +9,9 @@ import { makeStyles, Popover } from '@material-ui/core';
 import ModalWithConfirm from "../../common/ModalWithConfirm/ModalWithConfirm";
 import SnackbarForModalWithConfirm from "../../common/SnackbarForModalWithConfirm/SnackbarForModalWithConfirm";
 import {t} from "ttag";
-import {deletefavoriteDiscount, postfavoriteDiscount} from "../../../http/discountApi"
-
-
+import {deletefavoriteDiscount, postfavoriteDiscount, deleteDiscount, getDiscounts} from "../../../http/discountApi"
+import {useAppSelector, useAppDispatch} from "../../../store/Redux-toolkit-hook"
+import {setDiscountLike,  addDiscounds} from "../../../store/filtersStore"
 interface LikeProps {
     discount?: {
         id: number,
@@ -32,28 +32,38 @@ interface LikeProps {
 
 
 const Like: FC<LikeProps> = (props) => {
+    const {searchObject} = useAppSelector(state => state.filters)
+    const isAuth = useAppSelector(state => state.user.isAuth);
     const [openModal, setOpenModal] = useState(false);
     const [openSnackbar, setSnackbar] = useState(false);
-
+    const dispatch = useAppDispatch();
 
     const handlerDeleteCard = () => {
-        deleteCard(props.discount);
+        deleteCard();
         setSnackbar(true);
     }
 
-    const deleteCard = (currentCard: any) => {
-        const filteredArr = props.cards.filter((item: any) => item.id !== currentCard.id);
-        props.updateData(filteredArr)
-        handleClose()
+    const deleteCard = async() => {
+        const {status, data} = await deleteDiscount(props.discount.id); 
+        if(status <= 200 || status >= 299){
+            const {data} = await getDiscounts(searchObject)
+            dispatch(addDiscounds(data))
+            handleClose()
+        } 
+        else{
+
+        }
     }
-    const [like, setLike] = useState( false)
+    const [like, setLike] = useState();
+    setTimeout(()=> setLike(props.discount.liked),50)
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const [anchorShareEl, setAnchorShareEl] = React.useState<HTMLButtonElement | null>(null);
     const [anchorMoreEl, setAnchorMoreEl] = React.useState<HTMLButtonElement | null>(null);
 
     const handleLike = () => {
-        like ? deletefavoriteDiscount(props.discount.id) : postfavoriteDiscount(props.discount.id)
-        setLike(prev => !prev)
+        like ? deletefavoriteDiscount(props.discount.id) : postfavoriteDiscount(props.discount.id);
+        dispatch(setDiscountLike(props.discount.id))
+        setLike(prev => !prev);
     }
 
 
@@ -194,13 +204,12 @@ const Like: FC<LikeProps> = (props) => {
                     <button className="card-more__item" aria-describedby={id} onClick={handleChange}>
                         <img src="image/icons/Share.svg" alt="" />
                     </button>
-                    <button className="card-more__item" onClick={()=>console.log("onClick")}>
+                    {isAuth && <><button className="card-more__item" onClick={()=>console.log("onClick")}>
                         <AdminPanelCard currentCard={props.discount} style={{ fontSize: 30, position: 'relative', bottom: '5px' }} />
                     </button>
                     <button className="card-more__item" onClick={()=>{}}>
                         <DeleteOutlineIcon style={{ color: '#d32f2f', fontSize: 30 }} onClick={() => {setOpenModal(true)}} />
-
-                    </button>
+                    </button></>}
                 </Popover>
             </div>
 
@@ -216,7 +225,6 @@ const Like: FC<LikeProps> = (props) => {
                     snackbarState={openSnackbar}
                     successMessage={t`Promo was successfully deleted!`}
                     errorMessage={t`Something went wrong...`}
-
                 />
         </Fragment >
     );

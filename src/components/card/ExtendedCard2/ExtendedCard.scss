@@ -162,11 +162,11 @@
   }
 
   .MuiSvgIcon-colorPrimary {
-    color: #1877F2;
+    color: #0082ca;
     margin-bottom: -4px;}
 
   .MuiButton-containedPrimary {
-    background-color: #1877F2;
+    background-color: #0082ca;
   }
 
   .number {
@@ -181,7 +181,7 @@
 
     .submit {
       height: 40px;
-      background: linear-gradient(to right, #1877F2, #1815BE);
+      background-color: #0082ca;
       color: white;
       font-size: 15px;
       transition: background 0.3s linear;
@@ -195,7 +195,7 @@
     }
 
     .submit:hover {
-      background: linear-gradient(to right, #194ddb, #0d0b69);
+      background-color: #015a8a;
       text-decoration: underline;
     }
   }

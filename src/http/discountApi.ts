@@ -23,6 +23,14 @@ interface IdiscountFilter{
     city: string;
     searchWord: string;
     subCategoriesIds: string[];
+    favourite: boolean;
+}
+
+interface IdiscountFilterHistory{
+    page: number;
+    size: number;
+    startDate: string,
+    endDate: string
 }
 
 export const postDiscount = async ( obj:Idiscount) =>{
@@ -31,8 +39,12 @@ export const postDiscount = async ( obj:Idiscount) =>{
 };
 
 export const putDiscount = async (idDiscount: string, obj:Idiscount) =>{
-    console.log(obj)
     const data = await authHost.put(`/discount/${idDiscount}`, obj);
+    return data;
+};
+
+export const deleteDiscount = async (idDiscount: string,) =>{
+    const data = await authHost.delete(`/discount/${idDiscount}`);
     return data;
 };
 
@@ -41,7 +53,7 @@ export const getDiscountById = async ( idDiscount: string) =>{
     return data;
 };
 
-export const getDiscounts = async (obj:IdiscountFilter ) =>{
+const getstring = (startString, obj) =>{
     const arrObj = Object.entries(obj);
     const string = arrObj.reduce((previousValue, item) => {
         let str =``
@@ -56,12 +68,21 @@ export const getDiscounts = async (obj:IdiscountFilter ) =>{
            str += `${item[0]}=${item[1]}&`
         } 
         return previousValue += str;
-    },`/discount/get_discounts?`);
+    },startString);
+    return string
+}
+
+export const getDiscounts = async (obj:IdiscountFilter ) =>{
+    const string = getstring(`/discount/get_discounts?`, obj);
     const data = await authHost.get(string.slice(0,string.length-1));
     return data;
 };
 
-
+export const getDiscountsHistory = async (obj:IdiscountFilterHistory ) =>{
+    const string = getstring(`/statistic/history?`, obj)
+    const data = await authHost.get(string.slice(0,string.length-1));
+    return data;
+};
 
 
 export const usedDiscount =  async(idDiscount: string) => {

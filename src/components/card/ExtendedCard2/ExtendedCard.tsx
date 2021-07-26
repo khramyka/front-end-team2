@@ -5,8 +5,11 @@ import Button from "@material-ui/core/Button";
 /*import Rating from "../../common/SearchBar/Rating/Rating";*/
 import CloseIcon from "@material-ui/icons/Close";
 import {makeStyles} from "@material-ui/core/styles";
-import {usedDiscount} from "../../../http/discountApi";
-import { useAppSelector, } from "../../../store/Redux-toolkit-hook";
+import {usedDiscount, getDiscountsHistory} from "../../../http/discountApi";
+import { useAppSelector, useAppDispatch} from "../../../store/Redux-toolkit-hook";
+import {setDiscountsHistory} from "../../../store/filtersStore"
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import {Submitbutton} from "../../index";
 interface ExtendedCardProps {
     discount: {
         place: string,
@@ -32,7 +35,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ExtendedCard: React.FC<ExtendedCardProps> = ({discount}) => {
-    const {vendor} = useAppSelector(state=>state.filters);
+    const dispatch = useAppDispatch();
+    const {vendor, searchObjectHistory} = useAppSelector(state=>state.filters);
+    const {vendorLocations} = discount;
+    const location = vendorLocations.map(item => Object.values(item).splice(0,3).join(" "));
     const classes = useStyles()
     const handleClick = () => {
         const myElement: HTMLElement | null =
@@ -64,6 +70,14 @@ const ExtendedCard: React.FC<ExtendedCardProps> = ({discount}) => {
             }
         }
     };
+
+    const usedDiscountAndSetHistory = async(id) =>{
+        const {status} = await usedDiscount(id);
+        if(status >= 200 && status <= 299){
+            getDiscountsHistory(searchObjectHistory).then(resolve=> dispatch(setDiscountsHistory(resolve.data.content))).catch(f=> console.log(f));
+        }
+    }
+
     const date = new Date(discount?.endDate * 1000);
     return (
             <div className={`ExtendedCard ${classes.root}`} id="excard">
@@ -100,7 +114,9 @@ const ExtendedCard: React.FC<ExtendedCardProps> = ({discount}) => {
             valid until<strong className="valid__Date">{date.toLocaleDateString()}</strong>
           </span>{" "}
                             </div>
-
+                            <div className="">
+                                <><LocationOnIcon style={{color: "red"}}/>{ location.join(", ")}</>
+                            </div>
 
                             <div className="shortDescription">
                                 <p>
@@ -116,9 +132,7 @@ const ExtendedCard: React.FC<ExtendedCardProps> = ({discount}) => {
                     </div>*/}
 
                             <div className="ExtendedCard__actions">
-                                <button className="submit btn--extCard" onClick={()=> usedDiscount(discount?.id)}>
-                                    Use Coupon
-                                </button>
+                                <Submitbutton classN={"submit btn--extCard"} name={"Use Coupon"} handleClick={()=> {usedDiscountAndSetHistory(discount?.id)}}/>
                                 {/* <Button variant="contained" color="primary">
                             Use Coupon
                         </Button>*/}

@@ -31,6 +31,8 @@ const ContainerDataPiker = ({setTime, time}:{setTime:any, time:any}) => {
     }, [selectedDate])
     const handleClick = () =>{
         setSelectedDate({From: new Date(),To : new Date(),})
+        
+        setTime(selectedDate)
     }
     const setDate = (name:string, date:any) => {
         setSelectedDate({...selectedDate, [name]: date });
@@ -44,7 +46,7 @@ const ContainerDataPiker = ({setTime, time}:{setTime:any, time:any}) => {
                                 <DatePiker label={t`From`}  setDate={setDate} selectedDate={selectedDate.From} />
                                 <DatePiker label={t`To`} setDate={setDate} selectedDate={selectedDate.To} helperText={helperText}/>
                 </MuiPickersUtilsProvider>
-                {!(pathname === MAIN_ROUTE) && <ThemeProvider theme={theme}>
+                {pathname !== MAIN_ROUTE && <ThemeProvider theme={theme}>
                     <Button  color="primary" onClick={handleClick} >{t`Clean date`}</Button>
                 </ThemeProvider>}
             </div>
