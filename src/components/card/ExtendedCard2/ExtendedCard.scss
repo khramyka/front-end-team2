@@ -225,6 +225,7 @@
   &__Location {
     border-bottom: 1px solid grey;
     margin-top: 15px;
+    padding-bottom: 15px;
     h3 {
       margin-top: 10px;
       margin-bottom: 0;
@@ -234,18 +235,23 @@
       padding-bottom: 15px;
     }
     .map-responsive{
-      overflow:hidden;
+      overflow: hidden;
       padding-bottom:350px;
-      position:relative;
+      position: relative;
       height:0;
     }
-    .map-responsive iframe{
+    .map-responsive:first-child{
+      position: static;
+      overflow: auto;
+    }
+    .map-responsive maps{
       left:0;
       top:0;
       height:320px;
       width:100%;
       position:absolute;
       border: none;
+
     }
   }
 
@@ -279,6 +285,7 @@
   display: none;
   transition: display 1s linear;
 }
-
-
+.maps {
+  padding-bottom: 350px;
+}
 

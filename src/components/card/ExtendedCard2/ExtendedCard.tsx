@@ -3,6 +3,7 @@ import "./ExtendedCard.scss";
 import PhoneIcon from "@material-ui/icons/Phone";
 import Button from "@material-ui/core/Button";
 /*import Rating from "../../common/SearchBar/Rating/Rating";*/
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import CloseIcon from "@material-ui/icons/Close";
 import {makeStyles} from "@material-ui/core/styles";
 import {usedDiscount} from "../../../http/discountApi";
@@ -64,6 +65,23 @@ const ExtendedCard: React.FC<ExtendedCardProps> = ({discount}) => {
             }
         }
     };
+
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process.env.REACT_APP_MAPS_KEY,
+        language: "en"
+    })
+    const containerStyle = {
+        position: "static",
+        overflow: "visible"
+    };
+
+    const center = {
+        lat: discount?.vendorLocations[0].latitude,
+        lng: discount?.vendorLocations[0].longitude
+    };
+
+
     const date = new Date(discount?.endDate * 1000);
     return (
             <div className={`ExtendedCard ${classes.root}`} id="excard">
@@ -142,14 +160,18 @@ const ExtendedCard: React.FC<ExtendedCardProps> = ({discount}) => {
 
                     <div className="ExtendedCard__Location">
                         <h3>Find us on Google maps</h3>
-                        <div className="map-responsive">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20188.81020188539!2d25.351465294328282!3d50.76442657852147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4725972d3b3e3d11%3A0xc98555ed40df010b!2sMi%20Store!5e0!3m2!1suk!2sua!4v1623845351797!5m2!1suk!2sua"
-                                width="600"
-                                height="450"
-                                loading="lazy"
-                            ></iframe>
-                        </div>
+                            {isLoaded ? (
+                                <GoogleMap
+                                    mapContainerClassName={"maps"}
+                                    center={center}
+                                    zoom={10}
+                                >
+                                    {discount?.vendorLocations.map(l => < Marker position={{lat: l.latitude, lng: l.longitude}}
+                                                                                 title={`${discount?.name}` + `, ` + `${l.country}` + `, ` + `${l.city}` + `, ` + `${l.addressLine}`} />)}
+                                </GoogleMap>
+                            ) : <></>
+                            }
+
                     </div>
 
                     <div className="ExtendedCard__Footer">
