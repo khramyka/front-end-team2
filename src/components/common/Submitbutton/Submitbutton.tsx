@@ -15,7 +15,7 @@ const Submitbutton = ({name,  handleClick, classN, open, setOpen}:{name:string, 
      
     return (
         <>
-            <Button variant="contained" onClick={(e)=>handleClick(e)} className={`${classes.root} ${classN}`}>
+            <Button variant="contained" onClick={handleClick} className={`${classes.root} ${classN}`}>
                 {name}
             </Button>
             <Spinner handleClose={()=> setOpen(false)} open={open}/>

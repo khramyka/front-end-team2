@@ -30,7 +30,8 @@ const ContainerDataPiker = ({setTime, time}:{setTime:any, time:any}) => {
         selectedDate.From - selectedDate.To > 0 ? setHelperText("start date must be earlier then end date") : setHelperText("")
     }, [selectedDate])
     const handleClick = () =>{
-        setSelectedDate({From: new Date(),To : new Date(),})
+        setSelectedDate({From: undefined,To : undefined,})
+        setTime({From: undefined,To : undefined,})
     }
     const setDate = (name:string, date:any) => {
         setSelectedDate({...selectedDate, [name]: date });
@@ -44,7 +45,7 @@ const ContainerDataPiker = ({setTime, time}:{setTime:any, time:any}) => {
                                 <DatePiker label={t`From`}  setDate={setDate} selectedDate={selectedDate.From} />
                                 <DatePiker label={t`To`} setDate={setDate} selectedDate={selectedDate.To} helperText={helperText}/>
                 </MuiPickersUtilsProvider>
-                {!(pathname === MAIN_ROUTE) && <ThemeProvider theme={theme}>
+                {pathname !== MAIN_ROUTE && <ThemeProvider theme={theme}>
                     <Button  color="primary" onClick={handleClick} >{t`Clean date`}</Button>
                 </ThemeProvider>}
             </div>

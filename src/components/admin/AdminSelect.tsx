@@ -61,7 +61,6 @@ export default function AdminSelect(props: {
     value?: string,
     valueArr: string[],
 }) {
-    console.log(props.data)
     const classes = useStyles();
     const theme = useTheme();
     const [personName, setPersonName] = React.useState(props.valueArr?[...props.valueArr]: []);
@@ -71,7 +70,7 @@ export default function AdminSelect(props: {
     const handleChange = (event: any) => {
         props.multi ?
             setPersonName(event.target.value)
-            : setAge(event.target.value)
+            : setAge(event.target.value);
         props.handleChange(event.target.value)
     };
     
