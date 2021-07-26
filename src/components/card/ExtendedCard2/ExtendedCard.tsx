@@ -118,29 +118,10 @@ const ExtendedCard: React.FC<ExtendedCardProps> = ({discount}) => {
             valid until<strong className="valid__Date">{date.toLocaleDateString()}</strong>
           </span>{" "}
                             </div>
-
-
-                            <div className="shortDescription">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                </p>
-                            </div>
-                            {/*     <div className="ExtendedCard__Rating">
-                        <Rating />
-                    </div>*/}
-                            {/*<div className="contacts">
-                        <PhoneIcon color="primary" />
-                        <span className="number">095 567 8778</span>
-                    </div>*/}
-
                             <div className="ExtendedCard__actions">
                                 <button className="submit btn--extCard" onClick={()=> usedDiscount(discount?.id)}>
                                     Use Coupon
                                 </button>
-                                {/* <Button variant="contained" color="primary">
-                            Use Coupon
-                        </Button>*/}
-                                {/* <span className="couponsLeft">5 coupons left</span>*/}
                             </div>
                         </div>
                     </div>
