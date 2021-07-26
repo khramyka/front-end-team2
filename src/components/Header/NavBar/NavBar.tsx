@@ -103,11 +103,11 @@ const NavBar = () => {
                 <MenuItem onClick={handleClose} className={classes.link}><p className={"link"}><Subscribe/></p></MenuItem>
                 <Hidden mdUp>
                     <MenuItem onClick={handleClose} className={classes.link}><NavLink to={"/main-page"}
-                                                                                      className={"link"}>Home</NavLink></MenuItem>
+                                                                                      className={"link"}>{t`Home`}</NavLink></MenuItem>
                     <MenuItem onClick={handleClose} className={classes.link}><NavLink to={"/history"}
-                                                                                      className={"link"}>History</NavLink></MenuItem>
+                                                                                      className={"link"}>{t`History`}</NavLink></MenuItem>
                     <MenuItem onClick={handleClose} className={classes.link}><NavLink to={"/statistic"}
-                                                                                      className={"link"}>Statistic</NavLink></MenuItem>
+                                                                                      className={"link"}>{t`Statistics`}</NavLink></MenuItem>
                 </Hidden>
                 {admin &&
                 <Hidden smUp>

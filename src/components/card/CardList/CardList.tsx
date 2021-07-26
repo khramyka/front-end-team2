@@ -82,7 +82,7 @@ const CardList: React.FC = (props) => {
             if (myElement === null) {
                 return null;
             } else {
-                myElement.style.zIndex = "1";
+                myElement.style.zIndex = "11000";
                 myElement.style.opacity= "1";
                 myElement.style.position= "absolute";
 
@@ -102,7 +102,7 @@ const CardList: React.FC = (props) => {
 
                     }
 
-                }, 100);
+                }, 500);
 
 
                 document.getElementById("excard")!.scrollIntoView({ behavior: 'smooth' });
