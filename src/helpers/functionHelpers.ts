@@ -10,6 +10,9 @@ export const geolocation = ({country ,city, addressLine}) => {
 }
 
 export const timeString = (time: any) => {
+    if(!time) {
+        return undefined
+    } 
     const year = time.getFullYear();
     const month = time.getMonth();
     const date = time.getDate();

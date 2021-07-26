@@ -13,7 +13,6 @@ const HistoryPage = () => {
     },[searchObjectHistory]);
     return (
         <div className="history">
-           
            <CardList/>
         </div>
     );

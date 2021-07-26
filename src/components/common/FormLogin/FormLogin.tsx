@@ -13,7 +13,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 const FormLogin: React.FC = () => {
     const history: any = useHistory();
-    const emailErrorTextRef: any = useRef();
+    const emailErrorTextRef: any = useRef(null);
     const dispatch = useAppDispatch();
     const recaptchaRef: any = useRef<ReCAPTCHA>(null);
     
@@ -76,7 +76,9 @@ const FormLogin: React.FC = () => {
     }
 
     const showError = () => {
-        if (emailErrorTextRef) emailErrorTextRef.current.style.visibility="visible";
+        if(emailErrorTextRef.current){
+            emailErrorTextRef.current.style.visibility="visible";
+        }
     }
 
     const hideError =() => {

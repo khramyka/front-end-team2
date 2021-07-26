@@ -30,9 +30,8 @@ const ContainerDataPiker = ({setTime, time}:{setTime:any, time:any}) => {
         selectedDate.From - selectedDate.To > 0 ? setHelperText("start date must be earlier then end date") : setHelperText("")
     }, [selectedDate])
     const handleClick = () =>{
-        setSelectedDate({From: new Date(),To : new Date(),})
-        
-        setTime(selectedDate)
+        setSelectedDate({From: undefined,To : undefined,})
+        setTime({From: undefined,To : undefined,})
     }
     const setDate = (name:string, date:any) => {
         setSelectedDate({...selectedDate, [name]: date });

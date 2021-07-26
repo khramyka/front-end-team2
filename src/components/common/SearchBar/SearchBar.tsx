@@ -112,10 +112,9 @@ const SearchBar =()=>{
     }
     
     const className = pathname === STATISTIC_ROUTE || pathname === HISTORY_ROUTE ? "container-searchbar modal-searchBar": "container-searchbar";
-    const [time, setTime] = useState({To: new Date(), From: new Date()});
+    const [time, setTime] = useState({To: undefined, From: undefined});
 
     useEffect(() => {
-        console.log("a")
         dispatch(setEndDataHistory(timeString(time.To)))
         dispatch(setStartDataHistory(timeString(time.From)))
     }, [time])
