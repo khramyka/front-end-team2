@@ -15,7 +15,9 @@
     @media screen and (max-width: 992px) {
       margin: 10px;
     }
-
+    .logo__name{
+      margin: 0;
+    }
   }
 
 }
@@ -32,7 +34,6 @@
   margin-bottom: 8px;
   padding-bottom: 5px;
   border-bottom: 1px solid #000;
-
   font-weight: 600;
   font-size: 20px;
   text-decoration: none;
@@ -81,6 +82,9 @@
     text-decoration: none;
     color: #000;
     font-size: 15px;
+    @media screen and (max-width: 992px) {
+      font-size: 25px;
+    }
 
     &:hover {
       text-decoration: underline;
@@ -108,8 +112,6 @@
         font-size: 24px;
       }
     }
-
-
   }
 
   .footerContact {
@@ -161,6 +163,4 @@
   top: 3%;
   left: 50%;
   display: block;
-}
-
-;
+};
