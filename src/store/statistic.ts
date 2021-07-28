@@ -4,11 +4,13 @@ import type { RootState } from './index';
 
 interface IStatistic{
     statistic: any
+    charts: any
 }
 
 
 const obj: IStatistic ={
-    statistic : {}
+    statistic : {},
+    charts: {}
 }
 
 
@@ -18,6 +20,9 @@ const reduserStatistic  = createSlice({
     reducers: {
         resetHistory: state =>  obj,
         setStatistic(state, actions: PayloadAction<any>) {
+            state = actions.payload;
+        },
+        setCharts(state, actions: PayloadAction<any>) {
             state = actions.payload;
         },
     },
