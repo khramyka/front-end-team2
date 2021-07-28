@@ -100,7 +100,6 @@ const NavBar = () => {
             >
 
                 <MenuItem onClick={handleClose} className={classes.link}><p className={"link"}>{userName}</p></MenuItem>
-                <MenuItem onClick={handleClose} className={classes.link}><p className={"link"}><Subscribe/></p></MenuItem>
                 <Hidden mdUp>
                     <MenuItem onClick={handleClose} className={classes.link}><NavLink to={"/main-page"}
                                                                                       className={"link"}>{t`Home`}</NavLink></MenuItem>
