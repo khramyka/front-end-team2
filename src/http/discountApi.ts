@@ -113,3 +113,8 @@ export const getStatistic = async()=>{
     const data = await authHost.get (`/statistic/used_discount/history`);
     return data;
 }
+
+export const getStatisticGrafic  = async()=>{
+    const data = await authHost.get (`/statistic/diagram_information`);
+    return data;
+}

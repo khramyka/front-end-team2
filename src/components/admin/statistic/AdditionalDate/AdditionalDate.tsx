@@ -56,26 +56,16 @@ const AdditionalDate = () => {
     const classes = useStyles();
     const [statObj, setStatObj] = useState([]);
 
-    const dispatch = useAppDispatch();
+
     useEffect(()=>{
-        const token = localStorage.getItem("token");
-        if(!token){
-            dispatch(resetUserState());
-            dispatch(resetFilteState());
-            dispatch(resetChipState());
-            dispatch(resetHistory());
-        }
         getStatistic().then(resolve=>{
             console.log('resolve.data.content =', resolve.data.content);
             setStatObj(resolve.data.content);
             /*console.log('rows2 = ', rows2)*/
-            dispatch(setStatistic(resolve.data.content))
             rows2 = resolve.data.content
-            console.log('rows2 = ', rows2)
         })
     },[]);
-    const {statistic} = useAppSelector(state => state.statistic)
-    console.log('statistic =', statObj)
+
 
 
 
